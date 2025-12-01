@@ -1,21 +1,54 @@
-# Sistema de Gestión de Anticipos Financieros para Ganaderos de Alpacas
+# Sistema de Gestión de Anticipos - Ganaderos de Alpacas
 
-## Descripción del Proyecto
+## Descripción
 
-El **Sistema de Gestión de Anticipos Financieros**
-La aplicación busca reducir la brecha financiera que enfrentan los ganaderos alpaqueros al proporcionarles acceso rápido a capital de trabajo basado en su producción estimada de fibra, eliminando intermediarios y procesos manuales que tradicionalmente han dificultado el acceso al crédito en zonas rurales.
+Aplicación móvil Android para facilitar el acceso a financiamiento a ganaderos de alpacas en comunidades rurales, permitiendo solicitar anticipos basados en su producción de fibra.
+
+## Problema
+
+- Falta de acceso a servicios financieros en zonas rurales
+- Procesos manuales lentos para gestión de anticipos
+- Falta de transparencia en cálculos financieros
+
+## Funcionalidades
+
+- **Autenticación** - Login de usuarios y administradores
+- **Gestión de Alpacas** - CRUD de alpacas por ganadero
+- **Gestión de Ganaderos** - Registro y administración
+- **Solicitudes de Anticipo** - Crear y dar seguimiento
+
+## Tecnologías
+
+- Kotlin + Android SDK
+- MVVM + Clean Architecture
+- Retrofit (API REST) + Room (BD local)
+- Material Design
+
+## Requisitos
+
+- Android 7.0+ (API 24)
+- Conexión a Internet
 
 ---
 
-## Exposición del Problema
+## Changelog
 
-Los ganaderos de alpacas en comunidades rurales enfrentan múltiples desafíos en el acceso a financiamiento:
+### [Futuro]
 
-- ❌ Falta de acceso a servicios financieros formales en zonas rurales remotas
-- ❌ Procesos manuales lentos y propensos a errores en la gestión de anticipos
-- ❌ Falta de transparencia en los cálculos de anticipos y liquidaciones
-- ❌ Dificultad para evaluar el riesgo crediticio de productores rurales
-- ❌ Ausencia de trazabilidad en las transacciones financieras
-- ❌ Pérdida de tiempo y recursos en coordinación presencial para solicitudes y desembolsos
+- 🔜 CRUD de alpacas y ganaderos
+- 🔜 Solicitudes de anticipo
+- 🔜 Dashboard administrativo
+
+### [v1.1.0]
+
+- ✅ Sistema de login funcional
+- ✅ Autenticación de usuarios
+- ✅ Validación de credenciales
+
+### [v1.0.0]
+
+- ✅ Estructura inicial del proyecto
+- ✅ Diseño de pantallas
+- ✅ Configuración base de Android
 
 ---
