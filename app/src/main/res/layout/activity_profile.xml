@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_color">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNav"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/spacing_large">
+
+            <!-- Título -->
+            <TextView
+                android:id="@+id/tvTitleProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_large"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:text="@string/profile_title"
+                android:textColor="@color/black"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Avatar / Imagen de Perfil -->
+            <ImageView
+                android:id="@+id/ivAvatar"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:contentDescription="@string/profile_avatar_description"
+                android:src="@android:drawable/sym_def_app_icon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitleProfile"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <!-- Campo 1: Nombre -->
+            <TextView
+                android:id="@+id/lblNombre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_large"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:text="@string/profile_name_label"
+                android:textColor="@color/text_subtitle"
+                android:textSize="@dimen/text_size_subtitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivAvatar" />
+
+            <EditText
+                android:id="@+id/etNombre"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="@dimen/spacing_large"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:background="@drawable/bg_input_pill"
+                android:hint="@string/profile_name_hint"
+                android:inputType="textCapWords"
+                android:paddingHorizontal="@dimen/spacing_large"
+                android:textColor="@color/text_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblNombre"
+                tools:text="Kendell" />
+
+            <!-- Campo 2: Apellido -->
+            <TextView
+                android:id="@+id/lblApellido"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_large"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:text="@string/profile_lastname_label"
+                android:textColor="@color/text_subtitle"
+                android:textSize="@dimen/text_size_subtitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etNombre" />
+
+            <EditText
+                android:id="@+id/etApellido"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="@dimen/spacing_large"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:background="@drawable/bg_input_pill"
+                android:hint="@string/profile_lastname_hint"
+                android:inputType="textCapWords"
+                android:paddingHorizontal="@dimen/spacing_large"
+                android:textColor="@color/text_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblApellido"
+                tools:text="Norabuena" />
+
+            <!-- Campo 3: Sexo -->
+            <TextView
+                android:id="@+id/lblSexo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_large"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:text="@string/profile_gender_label"
+                android:textColor="@color/text_subtitle"
+                android:textSize="@dimen/text_size_subtitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etApellido" />
+
+            <EditText
+                android:id="@+id/etSexo"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="@dimen/spacing_large"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:background="@drawable/bg_input_pill"
+                android:hint="@string/profile_gender_hint"
+                android:inputType="text"
+                android:paddingHorizontal="@dimen/spacing_large"
+                android:textColor="@color/text_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblSexo"
+                tools:text="Masculino" />
+
+            <!-- Campo 4: Ubicación -->
+            <TextView
+                android:id="@+id/lblUbicacion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_large"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:text="@string/profile_location_label"
+                android:textColor="@color/text_subtitle"
+                android:textSize="@dimen/text_size_subtitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etSexo" />
+
+            <EditText
+                android:id="@+id/etUbicacion"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="@dimen/spacing_large"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:background="@drawable/bg_input_pill"
+                android:hint="@string/profile_location_hint"
+                android:inputType="textPostalAddress"
+                android:paddingHorizontal="@dimen/spacing_large"
+                android:textColor="@color/text_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblUbicacion"
+                tools:text="Mz D lote 24" />
+
+            <!-- Botón Cerrar Sesión -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnLogout"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_marginHorizontal="@dimen/spacing_large"
+                android:layout_marginTop="32dp"
+                android:backgroundTint="@color/error"
+                android:text="@string/profile_logout_button"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:cornerRadius="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etUbicacion" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <!-- Barra de Navegación Inferior -->
+    <LinearLayout
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottom_nav_height"
+        android:background="@color/white"
+        android:elevation="16dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <!-- Home (Inactivo) -->
+        <ImageView
+            android:id="@+id/navHome"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/nav_icon_size"
+            android:layout_weight="1"
+            android:contentDescription="@string/nav_home"
+            android:src="@drawable/ic_home"
+            app:tint="@color/nav_icon_inactive" />
+
+        <!-- Wallet (Inactivo) -->
+        <ImageView
+            android:id="@+id/navWallet"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/nav_icon_size"
+            android:layout_weight="1"
+            android:contentDescription="@string/nav_wallet"
+            android:src="@drawable/ic_wallet"
+            app:tint="@color/nav_icon_inactive" />
+
+        <!-- User (ACTIVO - Azul) -->
+        <ImageView
+            android:id="@+id/navUser"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/nav_icon_size"
+            android:layout_weight="1"
+            android:contentDescription="@string/nav_profile"
+            android:src="@drawable/ic_person"
+            app:tint="@color/nav_icon_active" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

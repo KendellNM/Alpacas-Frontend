@@ -2,7 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Permisos de red -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    
+    <!-- Permisos de ubicación (GPS) -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <application
+        android:name=".AlpacaApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -11,18 +20,82 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Alpaca"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        
+        <!-- Login Activity - Pantalla de inicio -->
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.LoginActivity"
             android:exported="true"
-            android:label="@string/app_name"
             android:theme="@style/Theme.Alpaca">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        <!-- Dashboard Activity - Pantalla principal para ROLE_GANADERO -->
+        <activity
+            android:name=".ui.DashboardActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Alpaca" />
+        
+        <!-- Request Activity - Solicitud de anticipo -->
+        <activity
+            android:name=".ui.RequestActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Alpaca" />
+        
+        <!-- Profile Activity - Perfil de usuario -->
+        <activity
+            android:name=".ui.ProfileActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Alpaca" />
+        
+        <!-- Admin Dashboard Activity - Pantalla principal para ROLE_ADMIN -->
+        <activity
+            android:name=".ui.AdminDashboardActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Alpaca" />
+        
+        <!-- Ganaderos Activity - Lista de ganaderos (ADMIN) -->
+        <activity
+            android:name=".ui.GanaderosActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Alpaca" />
+        
+        <!-- Ganadero Form Activity - Crear/Editar ganadero (ADMIN) -->
+        <activity
+            android:name=".ui.GanaderoFormActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Alpaca" />
+        
+        <!-- Solicitudes Activity - Gestión de solicitudes (ADMIN) -->
+        <activity
+            android:name=".ui.solicitudes.SolicitudesActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Alpaca" />
+        
+        <!-- Alpacas Activity - Gestión de alpacas (ADMIN) -->
+        <activity
+            android:name=".ui.alpacas.AlpacasActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Alpaca" />
+        
+        <!-- Alpaca Form Activity - Crear/Editar alpaca (ADMIN) -->
+        <activity
+            android:name=".ui.alpacas.AlpacaFormActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Alpaca" />
+        
+        <!-- Main Activity - Pantalla principal -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.Alpaca" />
+            
     </application>
 
 </manifest>

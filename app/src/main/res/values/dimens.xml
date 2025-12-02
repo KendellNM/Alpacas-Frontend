@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="spacing_small">8dp</dimen>
+    <dimen name="spacing_medium">16dp</dimen>
+    <dimen name="spacing_large">32dp</dimen>
+    <dimen name="spacing_xlarge">48dp</dimen>
+    
+    <dimen name="text_size_title">24sp</dimen>
+    <dimen name="text_size_subtitle">14sp</dimen>
+    <dimen name="text_size_button">16sp</dimen>
+    
+    <dimen name="logo_size">200dp</dimen>
+    <dimen name="button_height">60dp</dimen>
+    <dimen name="input_corner_radius">30dp</dimen>
+    <dimen name="button_corner_radius">8dp</dimen>
+    
+    <!-- Dashboard Sizes -->
+    <dimen name="header_height">240dp</dimen>
+    <dimen name="card_width">160dp</dimen>
+    <dimen name="card_height">120dp</dimen>
+    <dimen name="card_corner_radius">24dp</dimen>
+    <dimen name="card_elevation">8dp</dimen>
+    <dimen name="bottom_nav_height">70dp</dimen>
+    <dimen name="nav_icon_size">32dp</dimen>
+    <dimen name="header_curve_radius">32dp</dimen>
+
+    <!-- Common Margins and Paddings -->
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_medium">16dp</dimen>
+    <dimen name="margin_large">24dp</dimen>
+    <dimen name="padding_small">8dp</dimen>
+    <dimen name="padding_medium">16dp</dimen>
+    <dimen name="padding_large">24dp</dimen>
+</resources>

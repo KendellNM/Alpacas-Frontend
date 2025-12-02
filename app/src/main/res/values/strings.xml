@@ -1,3 +1,173 @@
 <resources>
-    <string name="app_name">alpaca</string>
+    <string name="app_name">Alpaca KNM</string>
+    
+    <!-- Login Screen -->
+    <string name="login_welcome">Bienvenido(a)</string>
+    <string name="login_subtitle">Gestión de Ganaderos y Anticipos</string>
+    <string name="login_username_hint">Usuario / DNI</string>
+    <string name="login_password_hint">Contraseña</string>
+    <string name="login_button">Iniciar Sesión</string>
+    <string name="login_logo_description">Logo Alpaca</string>
+    <string name="error_username_required">El usuario es requerido</string>
+    <string name="error_password_required">La contraseña es requerida</string>
+    <string name="login_welcome_message">Bienvenido %1$s</string>
+   
+    <!-- Dashboard Screen (Ganadero) -->
+    <string name="dashboard_welcome">Bienvenido</string>
+    <string name="dashboard_alpacas_registered">Alpacas Registradas</string>
+    <string name="dashboard_scoring">Scoring Crediticio</string>
+    <string name="dashboard_request_title">Última Solicitud de Anticipo</string>
+    <string name="dashboard_new_request_button">+ Nueva Solicitud</string>
+    <string name="dashboard_opening_form">Abriendo formulario de solicitud…</string>
+    <string name="dashboard_go_to_wallet">Ir a Solicitar</string>
+    <string name="dashboard_go_to_profile">Ir a Perfil</string>
+    
+    <!-- Navigation -->
+    <string name="nav_home">Inicio</string>
+    <string name="nav_wallet">Solicitar</string>
+    <string name="nav_profile">Perfil</string>
+    <string name="nav_ganaderos">Ganaderos</string>
+    <string name="nav_anticipos">Anticipos</string>
+    <string name="nav_logout">Salir</string>
+    
+    <!-- Request Screen -->
+    <string name="request_title">Nueva Solicitud de Anticipo</string>
+    <string name="request_calc_label">Cálculo Sugerido (60% valor estimado)</string>
+    <string name="request_calc_amount">S/ 0.00</string>
+    <string name="request_reference_price">Precio Ref. Alpaca: S/ %.2f / Kg</string>
+    <string name="request_kg_label">Kg Estimados de Fibra a Entregar</string>
+    <string name="request_kg_hint">Ej: 30.00</string>
+    <string name="request_amount_label">Monto Solicitado</string>
+    <string name="request_amount_hint">Monto a solicitar</string>
+    <string name="request_send_button">Enviar Solicitud</string>
+    <string name="request_sent_success">Tu solicitud de S/ %s ha sido enviada con éxito y está PENDIENTE de revisión.</string>
+    <string name="request_error_amount">Ingrese un monto válido</string>
+    <string name="request_error_kg">Ingrese los kilogramos estimados</string>
+    <string name="request_document_title">Comprobante/Promesa de Entrega</string>
+    <string name="request_document_hint">Documento adjunto (Opcional)</string>
+    
+    <!-- Profile Screen -->
+    <string name="profile_title">Mi Perfil</string>
+    <string name="profile_avatar_description">Avatar de usuario</string>
+    <string name="profile_name_label">Nombre</string>
+    <string name="profile_name_hint">Nombre</string>
+    <string name="profile_lastname_label">Apellido</string>
+    <string name="profile_lastname_hint">Apellido</string>
+    <string name="profile_gender_label">Sexo</string>
+    <string name="profile_gender_hint">Sexo</string>
+    <string name="profile_location_label">Ubicación</string>
+    <string name="profile_location_hint">Ubicación</string>
+    <string name="profile_go_to_wallet">Ir a Billetera</string>
+    <string name="profile_logout_button">Cerrar Sesión</string>
+    <string name="profile_logout_success">Sesión cerrada exitosamente</string>
+    
+    <!-- Admin Dashboard -->
+    <string name="admin_title">Operador</string>
+    <string name="admin_tasks_pending">Tareas Pendientes</string>
+    <string name="admin_solicitudes_pending">Solicitudes por Revisar</string>
+    <string name="admin_ganaderos_count">Ganaderos en Lista</string>
+    <string name="admin_quick_actions">Acciones Rápidas</string>
+    <string name="admin_register_ganadero">Registrar Ganadero</string>
+    <string name="admin_register_cosecha">Registrar Cosecha</string>
+    
+    <!-- Ganaderos Screen -->
+    <string name="ganaderos_title">Ganaderos</string>
+    <string name="ganaderos_empty">No hay ganaderos registrados</string>
+    <string name="ganaderos_add">Agregar Ganadero</string>
+    <string name="ganaderos_search_hint">Buscar por DNI o nombre</string>
+    <string name="ganaderos_alpacas">%d alpacas</string>
+    <string name="ganaderos_filter_activos">Activos</string>
+    <string name="ganaderos_filter_inactivos">Inactivos</string>
+    
+    <!-- Ganadero Form -->
+    <string name="ganadero_form_title_create">Registrar Ganadero</string>
+    <string name="ganadero_form_title_edit">Editar Ganadero</string>
+    <string name="ganadero_first_name">Nombre Completo</string>
+    <string name="ganadero_last_name">Apellido</string>
+    <string name="ganadero_dni">DNI</string>
+    <string name="ganadero_phone">Teléfono</string>
+    <string name="ganadero_email">Email</string>
+    <string name="ganadero_address">Dirección</string>
+    <string name="ganadero_district">Comunidad</string>
+    <string name="ganadero_province">Provincia</string>
+    <string name="ganadero_department">Departamento</string>
+    <string name="ganadero_alpacas">N° de Alpacas</string>
+    <string name="ganadero_gps">Ubicación GPS</string>
+    <string name="ganadero_gps_capture">Capturar</string>
+    <string name="ganadero_save">Guardar Ganadero</string>
+    <string name="ganadero_delete">Eliminar</string>
+    <string name="ganadero_delete_confirm">¿Eliminar este ganadero?</string>
+    <string name="ganadero_delete_message">Esta acción no se puede deshacer</string>
+    <string name="ganadero_created">Ganadero creado exitosamente</string>
+    <string name="ganadero_updated">Ganadero actualizado exitosamente</string>
+    <string name="ganadero_deleted">Ganadero eliminado exitosamente</string>
+    <string name="ganadero_photo_upload">Foto del Ganadero (Opcional)</string>
+    
+    <!-- Solicitudes Screen -->
+    <string name="solicitudes_title">Solicitudes Pendientes</string>
+    <string name="solicitudes_empty">No hay solicitudes pendientes de revisión.</string>
+    <string name="solicitudes_filter_all">Todas</string>
+    <string name="solicitudes_filter_pending">Pendiente</string>
+    <string name="solicitudes_filter_approved">Aprobada</string>
+    <string name="solicitudes_filter_rejected">Rechazada</string>
+    <string name="solicitudes_filter_disbursed">Desembolsada</string>
+    <string name="solicitudes_approve">Aprobar</string>
+    <string name="solicitudes_reject">Rechazar</string>
+    <string name="solicitudes_reject_reason">Motivo del rechazo</string>
+    <string name="solicitudes_reject_reason_hint">Las observaciones son obligatorias para RECHAZAR una solicitud.</string>
+    <string name="solicitudes_approve_success">Solicitud aprobada exitosamente</string>
+    <string name="solicitudes_reject_success">Solicitud rechazada</string>
+    <string name="solicitudes_action_error">Error al procesar solicitud</string>
+    <string name="solicitudes_recommendation">Recomendación del Sistema</string>
+    <string name="solicitudes_disburse">Registrar Desembolso</string>
+    
+    <!-- Alpacas Screen -->
+    <string name="alpacas_title">Alpacas</string>
+    <string name="alpacas_empty">No hay alpacas registradas</string>
+    <string name="alpacas_add">Agregar Alpaca</string>
+    <string name="alpacas_search_hint">Buscar por nombre, color o raza</string>
+    <string name="alpacas_delete">Eliminar</string>
+    <string name="alpacas_delete_confirm">¿Eliminar esta alpaca?</string>
+    <string name="alpacas_delete_message">Esta acción no se puede deshacer</string>
+    
+    <!-- Alpaca Form -->
+    <string name="alpaca_form_title_create">Nueva Alpaca</string>
+    <string name="alpaca_form_title_edit">Editar Alpaca</string>
+    <string name="alpaca_nombre">Nombre</string>
+    <string name="alpaca_raza">Raza</string>
+    <string name="alpaca_color">Color</string>
+    <string name="alpaca_edad">Edad (años)</string>
+    <string name="alpaca_peso">Peso (kg)</string>
+    <string name="alpaca_sexo">Sexo</string>
+    <string name="alpaca_estado">Estado</string>
+    <string name="alpaca_observaciones">Observaciones</string>
+    <string name="alpaca_save">Guardar</string>
+    <string name="alpaca_raza_huacaya">Huacaya</string>
+    <string name="alpaca_raza_suri">Suri</string>
+    <string name="alpaca_sexo_macho">Macho</string>
+    <string name="alpaca_sexo_hembra">Hembra</string>
+    <string name="alpaca_estado_activo">Activo</string>
+    <string name="alpaca_estado_vendido">Vendido</string>
+    <string name="alpaca_estado_fallecido">Fallecido</string>
+    
+    <!-- Status Labels -->
+    <string name="status_active">ACTIVO</string>
+    <string name="status_inactive">INACTIVO</string>
+    <string name="status_suspended">SUSPENDIDO</string>
+    <string name="status_pending">PENDIENTE</string>
+    <string name="status_approved">APROBADA</string>
+    <string name="status_rejected">RECHAZADA</string>
+    <string name="status_disbursed">DESEMBOLSADA</string>
+    
+    <!-- Common -->
+    <string name="cancel">Cancelar</string>
+    <string name="confirm">Confirmar</string>
+    <string name="save">Guardar</string>
+    <string name="delete">Eliminar</string>
+    <string name="edit">Editar</string>
+    <string name="back">Volver</string>
+    <string name="search">Buscar</string>
+    <string name="loading">Cargando...</string>
+    <string name="error">Error</string>
+    <string name="success">Éxito</string>
 </resources>
