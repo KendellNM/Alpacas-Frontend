@@ -45,6 +45,7 @@ import com.alpaca.knm.domain.usecase.alpaca.GetAlpacasByGanaderoUseCase
 import com.alpaca.knm.domain.usecase.alpaca.CreateAlpacaUseCase
 import com.alpaca.knm.domain.usecase.alpaca.UpdateAlpacaUseCase
 import com.alpaca.knm.domain.usecase.alpaca.DeleteAlpacaUseCase
+import com.alpaca.knm.data.remote.api.AlpacaApiService
 
 /**
  * Contenedor de dependencias de la aplicación

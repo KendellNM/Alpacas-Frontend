@@ -35,6 +35,7 @@
     <color name="input_background">#FFFFFF</color>
     <color name="input_border">#D1D5DB</color>
     <color name="input_text_gray">#404040</color>
+    <color name="divider">#E5E7EB</color>
     
     <!-- Card Colors -->
     <color name="calc_card_bg">#EBF5FF</color>

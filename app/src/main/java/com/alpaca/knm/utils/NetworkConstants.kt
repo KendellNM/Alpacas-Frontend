@@ -7,11 +7,8 @@ object NetworkConstants {
     
     // URL base del backend
     // Para emulador Android: 10.0.2.2 mapea a localhost de tu PC
-    // Para dispositivo físico: reemplaza con la IP de tu PC (ej: 192.168.1.100)
-    const val BASE_URL = "http://10.0.2.2:8080/api/"
-    
-    // URL alternativa para dispositivo físico (descomentar y ajustar IP)
-    // const val BASE_URL = "http://192.168.1.100:8080/api/"
+    // Para dispositivo físico: reemplaza con la IP de tu PC
+    const val BASE_URL = "http://192.168.1.5:8000/api/"
     
     // Endpoints
     object Endpoints {

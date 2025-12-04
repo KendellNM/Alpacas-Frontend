@@ -5,6 +5,10 @@ import com.alpaca.knm.data.remote.dto.SolicitudDto
 import retrofit2.Response
 import retrofit2.http.*
 
+/**
+ * API Service para gestión de Solicitudes de Anticipo
+ * El token de autenticación se agrega automáticamente via interceptor
+ */
 interface SolicitudApiService {
     
     @GET("advances")

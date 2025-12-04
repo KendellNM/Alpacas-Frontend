@@ -30,6 +30,7 @@ class DashboardActivity : AppCompatActivity() {
     
     // Navigation containers
     private var navHomeContainer: View? = null
+    private var navAlpacasContainer: View? = null
     private var navWalletContainer: View? = null
     private var navUserContainer: View? = null
     
@@ -74,6 +75,7 @@ class DashboardActivity : AppCompatActivity() {
         
         // Try new navigation containers first
         navHomeContainer = findViewById(R.id.navHomeContainer)
+        navAlpacasContainer = findViewById(R.id.navAlpacasContainer)
         navWalletContainer = findViewById(R.id.navWalletContainer)
         navUserContainer = findViewById(R.id.navUserContainer)
         
@@ -94,6 +96,10 @@ class DashboardActivity : AppCompatActivity() {
         // New navigation containers
         navHomeContainer?.setOnClickListener {
             // Ya estamos en home
+        }
+        
+        navAlpacasContainer?.setOnClickListener {
+            navigateToAlpacaRegistro()
         }
         
         navWalletContainer?.setOnClickListener {
@@ -175,6 +181,11 @@ class DashboardActivity : AppCompatActivity() {
     
     private fun navigateToProfile() {
         val intent = Intent(this, ProfileActivity::class.java)
+        startActivity(intent)
+    }
+    
+    private fun navigateToAlpacaRegistro() {
+        val intent = Intent(this, com.alpaca.knm.ui.alpacas.MisAlpacasActivity::class.java)
         startActivity(intent)
     }
 

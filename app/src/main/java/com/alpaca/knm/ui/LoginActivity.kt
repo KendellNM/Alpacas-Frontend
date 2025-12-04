@@ -7,8 +7,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.alpaca.knm.AlpacaApplication
-import com.alpaca.knm.MainActivity
 import com.alpaca.knm.R
+import com.alpaca.knm.data.local.SessionManager
 import com.alpaca.knm.presentation.login.LoginUiState
 import com.alpaca.knm.presentation.login.LoginViewModel
 import com.alpaca.knm.presentation.login.LoginViewModelFactory
@@ -190,7 +190,20 @@ class LoginActivity : AppCompatActivity() {
      * Navega a la pantalla principal según el rol del usuario
      */
     private fun navigateToHome(username: String) {
-        val user = (application as AlpacaApplication).appContainer.authRepository.getCurrentUser()
+        val appContainer = (application as AlpacaApplication).appContainer
+        val user = appContainer.authRepository.getCurrentUser()
+        val token = appContainer.authRepository.getToken()
+        
+        if (user != null && token != null) {
+            // Guardar sesión
+            SessionManager.saveSession(
+                context = this,
+                token = token,
+                userId = user.id,
+                userName = user.username,
+                role = user.role
+            )
+        }
         
         val intent = when (user?.role) {
             "ROLE_ADMIN" -> Intent(this, AdminDashboardActivity::class.java)

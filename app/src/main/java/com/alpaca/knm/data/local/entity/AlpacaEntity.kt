@@ -32,25 +32,12 @@ data class AlpacaEntity(
             id = id,
             ganaderoId = ganaderoId,
             nombre = nombre,
-            raza = when (raza.uppercase()) {
-                "HUACAYA" -> AlpacaRaza.HUACAYA
-                "SURI" -> AlpacaRaza.SURI
-                else -> AlpacaRaza.HUACAYA
-            },
+            raza = AlpacaRaza.valueOf(raza),
             color = color,
             edad = edad,
             peso = peso,
-            sexo = when (sexo.uppercase()) {
-                "MACHO" -> AlpacaSexo.MACHO
-                "HEMBRA" -> AlpacaSexo.HEMBRA
-                else -> AlpacaSexo.MACHO
-            },
-            estado = when (estado.uppercase()) {
-                "ACTIVO" -> AlpacaEstado.ACTIVO
-                "VENDIDO" -> AlpacaEstado.VENDIDO
-                "FALLECIDO" -> AlpacaEstado.FALLECIDO
-                else -> AlpacaEstado.ACTIVO
-            },
+            sexo = AlpacaSexo.valueOf(sexo),
+            estado = AlpacaEstado.valueOf(estado),
             fechaRegistro = Date(fechaRegistro),
             observaciones = observaciones
         )

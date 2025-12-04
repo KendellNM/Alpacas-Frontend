@@ -136,14 +136,14 @@ class AlpacasActivity : AppCompatActivity() {
         alpaca?.let {
             intent.putExtra("ALPACA_ID", it.id)
             intent.putExtra("GANADERO_ID", it.ganaderoId)
-            intent.putExtra("NOMBRE", it.nombre)
-            intent.putExtra("RAZA", it.raza.name)
-            intent.putExtra("COLOR", it.color)
-            intent.putExtra("EDAD", it.edad)
-            intent.putExtra("PESO", it.peso)
-            intent.putExtra("SEXO", it.sexo.name)
-            intent.putExtra("ESTADO", it.estado.name)
-            intent.putExtra("OBSERVACIONES", it.observaciones)
+            intent.putExtra("NOMBRE", it.nombre as String)
+            intent.putExtra("RAZA", it.raza.name as String)
+            intent.putExtra("COLOR", it.color as String)
+            intent.putExtra("EDAD", it.edad as Int)
+            intent.putExtra("PESO", it.peso as Double)
+            intent.putExtra("SEXO", it.sexo.name as String)
+            intent.putExtra("ESTADO", it.estado.name as String)
+            intent.putExtra("OBSERVACIONES", it.observaciones ?: "")
         }
         startActivity(intent)
     }

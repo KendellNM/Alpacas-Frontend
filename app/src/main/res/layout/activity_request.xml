@@ -224,6 +224,7 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent">
 
+        <!-- Home (Inactivo) -->
         <LinearLayout
             android:id="@+id/navHomeContainer"
             android:layout_width="0dp"
@@ -248,6 +249,30 @@
                 android:textSize="12sp" />
         </LinearLayout>
 
+        <!-- Alpacas (Inactivo) -->
+        <LinearLayout
+            android:id="@+id/navAlpacasContainer"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🦙"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Alpacas"
+                android:textColor="@color/nav_icon_inactive"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <!-- Solicitar (ACTIVO) -->
         <LinearLayout
             android:id="@+id/navWalletContainer"
             android:layout_width="0dp"
@@ -272,6 +297,7 @@
                 android:textSize="12sp" />
         </LinearLayout>
 
+        <!-- Perfil (Inactivo) -->
         <LinearLayout
             android:id="@+id/navUserContainer"
             android:layout_width="0dp"

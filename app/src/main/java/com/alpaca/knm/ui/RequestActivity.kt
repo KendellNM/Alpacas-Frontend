@@ -18,6 +18,7 @@ import com.alpaca.knm.presentation.request.RequestNavigationEvent
 import com.alpaca.knm.presentation.request.RequestUiState
 import com.alpaca.knm.presentation.request.RequestViewModel
 import com.alpaca.knm.presentation.request.RequestViewModelFactory
+import com.alpaca.knm.ui.alpacas.MisAlpacasActivity
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import java.util.Locale
@@ -40,6 +41,7 @@ class RequestActivity : AppCompatActivity() {
     private var btnBack: ImageButton? = null
     private var navHome: ImageView? = null
     private var navHomeContainer: View? = null
+    private var navAlpacasContainer: View? = null
     private var navWalletContainer: View? = null
     private var navUserContainer: View? = null
     
@@ -85,6 +87,7 @@ class RequestActivity : AppCompatActivity() {
         btnBack = findViewById(R.id.btnBack)
         navHome = findViewById(R.id.navHome)
         navHomeContainer = findViewById(R.id.navHomeContainer)
+        navAlpacasContainer = findViewById(R.id.navAlpacasContainer)
         navWalletContainer = findViewById(R.id.navWalletContainer)
         navUserContainer = findViewById(R.id.navUserContainer)
         
@@ -136,6 +139,10 @@ class RequestActivity : AppCompatActivity() {
             navigateToDashboard()
         }
         
+        navAlpacasContainer?.setOnClickListener {
+            navigateToAlpacaRegistro()
+        }
+        
         navWalletContainer?.setOnClickListener {
             // Already on request screen
         }
@@ -170,6 +177,11 @@ class RequestActivity : AppCompatActivity() {
     
     private fun navigateToProfile() {
         val intent = Intent(this, ProfileActivity::class.java)
+        startActivity(intent)
+    }
+    
+    private fun navigateToAlpacaRegistro() {
+        val intent = Intent(this, MisAlpacasActivity::class.java)
         startActivity(intent)
     }
 

@@ -13,6 +13,7 @@ import com.alpaca.knm.presentation.profile.ProfileNavigationEvent
 import com.alpaca.knm.presentation.profile.ProfileUiState
 import com.alpaca.knm.presentation.profile.ProfileViewModel
 import com.alpaca.knm.presentation.profile.ProfileViewModelFactory
+import com.alpaca.knm.ui.alpacas.MisAlpacasActivity
 
 /**
  * Activity de Perfil
@@ -25,9 +26,13 @@ class ProfileActivity : AppCompatActivity() {
     private lateinit var etApellido: EditText
     private lateinit var etSexo: EditText
     private lateinit var etUbicacion: EditText
-    private lateinit var navHome: ImageView
-    private lateinit var navWallet: ImageView
     private lateinit var btnLogout: com.google.android.material.button.MaterialButton
+    
+    // Navigation
+    private var navHomeContainer: android.view.View? = null
+    private var navAlpacasContainer: android.view.View? = null
+    private var navWalletContainer: android.view.View? = null
+    private var navUserContainer: android.view.View? = null
     
     // ViewModel
     private lateinit var viewModel: ProfileViewModel
@@ -58,23 +63,40 @@ class ProfileActivity : AppCompatActivity() {
         etApellido = findViewById(R.id.etApellido)
         etSexo = findViewById(R.id.etSexo)
         etUbicacion = findViewById(R.id.etUbicacion)
-        navHome = findViewById(R.id.navHome)
-        navWallet = findViewById(R.id.navWallet)
         btnLogout = findViewById(R.id.btnLogout)
+        
+        // Navigation
+        navHomeContainer = findViewById(R.id.navHomeContainer)
+        navAlpacasContainer = findViewById(R.id.navAlpacasContainer)
+        navWalletContainer = findViewById(R.id.navWalletContainer)
+        navUserContainer = findViewById(R.id.navUserContainer)
     }
 
     private fun setupListeners() {
-        navHome.setOnClickListener {
+        navHomeContainer?.setOnClickListener {
             viewModel.onHomeClicked()
         }
         
-        navWallet.setOnClickListener {
+        navAlpacasContainer?.setOnClickListener {
+            navigateToAlpacaRegistro()
+        }
+        
+        navWalletContainer?.setOnClickListener {
             viewModel.onWalletClicked()
+        }
+        
+        navUserContainer?.setOnClickListener {
+            // Already on profile screen
         }
         
         btnLogout.setOnClickListener {
             viewModel.onLogoutClicked()
         }
+    }
+    
+    private fun navigateToAlpacaRegistro() {
+        val intent = Intent(this, MisAlpacasActivity::class.java)
+        startActivity(intent)
     }
 
     private fun observeViewModel() {

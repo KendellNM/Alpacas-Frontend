@@ -6,18 +6,18 @@ import com.google.gson.annotations.SerializedName
  * DTO para la respuesta de login
  */
 data class LoginResponse(
-    @SerializedName("id")
-    val id: String,
-    
     @SerializedName("username")
     val username: String,
     
-    @SerializedName("email")
-    val email: String?,
-    
     @SerializedName("token")
-    val token: String?,
+    val token: String,
     
     @SerializedName("role")
-    val role: String?
+    val role: String,
+    
+    @SerializedName("token_type")
+    val tokenType: String?,
+    
+    @SerializedName("expires_in")
+    val expiresIn: Int?
 )

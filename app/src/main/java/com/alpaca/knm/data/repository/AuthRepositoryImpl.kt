@@ -1,5 +1,6 @@
 package com.alpaca.knm.data.repository
 
+import com.alpaca.knm.data.remote.RetrofitClient
 import com.alpaca.knm.data.source.local.AuthLocalDataSource
 import com.alpaca.knm.data.source.remote.AuthRemoteDataSource
 import com.alpaca.knm.domain.model.User
@@ -16,36 +17,11 @@ class AuthRepositoryImpl(
     
     override suspend fun login(username: String, password: String): Result<User> {
         return try {
-            // ============================================
-            // MODO DEMO: Login de prueba sin backend
-            // Usuarios: "ganadero" o "operador" (cualquier password)
-            // ============================================
-            val demoUser = when (username.lowercase()) {
-                "ganadero" -> User(
-                    id = "1",
-                    username = "ganadero",
-                    email = "ganadero@alpaca.com",
-                    role = "ROLE_GANADERO",
-                    fullName = "Juan Dueñas"
-                )
-                "operador", "admin" -> User(
-                    id = "2",
-                    username = "operador",
-                    email = "operador@alpaca.com",
-                    role = "ROLE_ADMIN",
-                    fullName = "Carla M."
-                )
-                else -> null
-            }
-            
-            if (demoUser != null) {
-                // Guardar sesión localmente
-                localDataSource.saveUser(demoUser)
-                return Result.success(demoUser)
-            }
-            
-            // Si no es usuario demo, intentar login real con API
+            // Login real con API del backend
             val user = remoteDataSource.login(username, password)
+            
+            // Guardar token en RetrofitClient para peticiones autenticadas
+            RetrofitClient.setAuthToken(user.token)
             
             // Guardar sesión localmente (token, role, etc.)
             localDataSource.saveUser(user)
@@ -58,7 +34,7 @@ class AuthRepositoryImpl(
                 e.message?.contains("404") == true -> "Usuario no encontrado"
                 e.message?.contains("500") == true -> "Error del servidor"
                 e.message?.contains("timeout") == true -> "Tiempo de espera agotado"
-                else -> e.message ?: "Error de conexión. Usa 'ganadero' u 'operador' para probar."
+                else -> e.message ?: "Error de conexión"
             }
             Result.failure(Exception(errorMessage))
         }
@@ -76,6 +52,9 @@ class AuthRepositoryImpl(
                 // Continuar aunque falle el logout en servidor
             }
             
+            // Limpiar token de RetrofitClient
+            RetrofitClient.setAuthToken(null)
+            
             // Limpiar datos locales
             localDataSource.clearUser()
             Result.success(Unit)
@@ -85,10 +64,25 @@ class AuthRepositoryImpl(
     }
     
     override fun isUserLoggedIn(): Boolean {
-        return localDataSource.isUserLoggedIn()
+        val isLoggedIn = localDataSource.isUserLoggedIn()
+        // Restaurar token en RetrofitClient si hay sesión activa
+        if (isLoggedIn) {
+            val token = localDataSource.getToken()
+            RetrofitClient.setAuthToken(token)
+        }
+        return isLoggedIn
     }
     
     override fun getCurrentUser(): User? {
-        return localDataSource.getCurrentUser()
+        val user = localDataSource.getCurrentUser()
+        // Restaurar token en RetrofitClient
+        if (user?.token != null) {
+            RetrofitClient.setAuthToken(user.token)
+        }
+        return user
+    }
+    
+    override fun getToken(): String? {
+        return localDataSource.getToken()
     }
 }

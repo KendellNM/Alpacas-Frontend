@@ -23,6 +23,7 @@ class AdminDashboardActivity : AppCompatActivity() {
     // Navigation containers
     private var navGanaderosContainer: View? = null
     private var navSolicitudesContainer: View? = null
+    private var navUsersContainer: View? = null
     private var navLogoutContainer: View? = null
     
     // Task counters
@@ -48,6 +49,7 @@ class AdminDashboardActivity : AppCompatActivity() {
         // Try to find new navigation elements
         navGanaderosContainer = findViewById(R.id.navGanaderosContainer)
         navSolicitudesContainer = findViewById(R.id.navSolicitudesContainer)
+        navUsersContainer = findViewById(R.id.navUsersContainer)
         navLogoutContainer = findViewById(R.id.navLogoutContainer)
         
         // Task counters
@@ -74,6 +76,11 @@ class AdminDashboardActivity : AppCompatActivity() {
         // Bottom Navigation: Solicitudes/Anticipos
         navSolicitudesContainer?.setOnClickListener {
             navigateToSolicitudes()
+        }
+        
+        // Bottom Navigation: Users
+        navUsersContainer?.setOnClickListener {
+            navigateToUsers()
         }
         
         // Bottom Navigation: Logout
@@ -108,6 +115,11 @@ class AdminDashboardActivity : AppCompatActivity() {
     
     private fun navigateToAlpacas() {
         val intent = Intent(this, com.alpaca.knm.ui.alpacas.AlpacasActivity::class.java)
+        startActivity(intent)
+    }
+    
+    private fun navigateToUsers() {
+        val intent = Intent(this, com.alpaca.knm.ui.users.UsersActivity::class.java)
         startActivity(intent)
     }
     

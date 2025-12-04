@@ -3,7 +3,7 @@ package com.alpaca.knm.data.remote.datasource
 import com.alpaca.knm.data.remote.api.AlpacaApiService
 import com.alpaca.knm.data.remote.dto.AlpacaCreateRequest
 import com.alpaca.knm.data.remote.dto.AlpacaDto
-import com.alpaca.knm.util.ErrorHandler
+import com.alpaca.knm.data.remote.ErrorHandler
 
 class AlpacaRemoteDataSource(
     private val apiService: AlpacaApiService

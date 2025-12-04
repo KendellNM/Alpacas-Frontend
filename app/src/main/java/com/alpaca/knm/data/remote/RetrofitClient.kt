@@ -1,5 +1,6 @@
 package com.alpaca.knm.data.remote
 
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -12,16 +13,40 @@ import java.util.concurrent.TimeUnit
  */
 object RetrofitClient {
     
-    // URL base del backend local
-    // Para emulador Android: usa 10.0.2.2 en lugar de localhost
-    // Para dispositivo físico: usa la IP de tu PC en la red local
-    private const val BASE_URL = "http://192.168.1.5:8080/api/"
+    // URL base del backend en Render (producción)
+    private const val BASE_URL = "https://proyecto-alpacas.onrender.com/api/"
+    
+    // Token de autenticación (se actualiza después del login)
+    private var authToken: String? = null
+    
+    fun setAuthToken(token: String?) {
+        authToken = token
+    }
+    
+    fun getAuthToken(): String? = authToken
     
     private val loggingInterceptor = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY
     }
     
+    // Interceptor que agrega el token de autenticación automáticamente
+    private val authInterceptor = Interceptor { chain ->
+        val originalRequest = chain.request()
+        val token = authToken
+        
+        val newRequest = if (token != null && !originalRequest.url.encodedPath.contains("auth/login")) {
+            originalRequest.newBuilder()
+                .header("Authorization", "Bearer $token")
+                .build()
+        } else {
+            originalRequest
+        }
+        
+        chain.proceed(newRequest)
+    }
+    
     private val okHttpClient = OkHttpClient.Builder()
+        .addInterceptor(authInterceptor)
         .addInterceptor(loggingInterceptor)
         .connectTimeout(30, TimeUnit.SECONDS)
         .readTimeout(30, TimeUnit.SECONDS)

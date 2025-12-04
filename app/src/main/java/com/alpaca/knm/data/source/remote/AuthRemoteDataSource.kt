@@ -31,14 +31,14 @@ class AuthRemoteDataSource {
                     ?: throw ApiException.ServerException("Respuesta vacía del servidor")
                 
                 // Validar que el token no esté vacío
-                if (body.token.isNullOrBlank()) {
+                if (body.token.isBlank()) {
                     throw ApiException.ServerException("Token no recibido del servidor")
                 }
                 
                 return User(
-                    id = body.id,
+                    id = body.username, // Usamos username como id
                     username = body.username,
-                    email = body.email ?: "",
+                    email = "",
                     token = body.token,
                     role = body.role
                 )
