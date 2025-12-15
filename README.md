@@ -23,12 +23,81 @@ Aplicación móvil Android para facilitar el acceso a financiamiento a ganaderos
 - **Solicitudes de Anticipo** - Crear y dar seguimiento
 - **Dashboard** - Resumen para administradores
 
-## Tecnologías
+---
 
-- Kotlin + Android SDK
-- MVVM + Clean Architecture
-- Retrofit (API REST)
-- Material Design 3
+## Capturas de Pantalla
+
+|           Login           |           Inicio            |      Solicitud de Anticipo      |
+| :-----------------------: | :-------------------------: | :-----------------------------: |
+| ![Login](docs/Login.jpeg) | ![Inicio](docs/Inicio.jpeg) | ![Anticipo](docs/Anticipo.jpeg) |
+
+|               Listado de Ganaderos               |              Registro de Alpacas              |              Solicitudes              |
+| :----------------------------------------------: | :-------------------------------------------: | :-----------------------------------: |
+| ![Ganaderos](docs/Listado%20de%20Ganaderos.jpeg) | ![Alpacas](docs/Registro%20de%20alpacas.jpeg) | ![Solicitudes](docs/Solicitudes.jpeg) |
+
+|              Gestión de Usuarios               |              Solicitud Usuario              |
+| :--------------------------------------------: | :-----------------------------------------: |
+| ![Usuarios](docs/Gestión%20de%20usuarios.jpeg) | ![Solicitud](docs/Solicitud%20usuario.jpeg) |
+
+---
+
+## Tecnologías y Componentes
+
+### Lenguaje y SDK
+
+- **Kotlin** - Lenguaje principal
+- **Android SDK** - API 24+ (Android 7.0)
+- **Gradle Kotlin DSL** - Sistema de build
+
+### Arquitectura
+
+- **MVVM** (Model-View-ViewModel)
+- **Clean Architecture** - Separación en capas (data, domain, presentation, ui)
+- **Repository Pattern** - Abstracción de fuentes de datos
+
+### Componentes de UI (Android)
+
+- `AppCompatActivity`
+- `RecyclerView` + `ListAdapter`
+- `ConstraintLayout`
+- `MaterialToolbar`
+- `FloatingActionButton`
+- `TextInputLayout` + `TextInputEditText`
+- `CardView`
+- `ProgressBar`
+- `AlertDialog`
+- `Toast`
+- `Spinner`
+
+### Patrones y Utilidades
+
+- **Coroutines** - Programación asíncrona
+- **Sealed Classes** - Estados UI (Loading, Success, Error)
+- **Result** - Manejo de respuestas
+- **Extension Functions** - Funciones de extensión
+- **Data Classes** - DTOs y modelos
+
+---
+
+## Estructura del Proyecto
+
+```
+app/src/main/java/com/alpaca/knm/
+├── data/
+│   ├── local/
+│   ├── remote/         # Retrofit, APIs, DTOs
+│   ├── repository/     # Implementaciones de repositorios
+│   └── sync/
+├── di/                 # Inyección de dependencias
+├── domain/
+│   ├── model/          # Modelos de dominio
+│   ├── repository/     # Interfaces de repositorios
+│   └── usecase/        # Casos de uso
+├── presentation/       # ViewModels, Adapters, Factories
+└── ui/                 # Activities, Fragments
+```
+
+---
 
 ## Requisitos
 
@@ -45,6 +114,8 @@ Aplicación móvil Android para facilitar el acceso a financiamiento a ganaderos
 - ✅ CRUD de usuarios
 - ✅ Gestión de solicitudes de anticipo
 - ✅ Dashboard administrativo con estadísticas
+- ✅ Gestión de usuarios (admin)
+- ✅ Soporte offline con sincronización
 - ✅ Manejo de errores mejorado
 
 ### [v1.1.0]
