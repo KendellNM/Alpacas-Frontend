@@ -1,18 +1,23 @@
 package com.alpaca.knm.data.remote.api
 
 import com.alpaca.knm.data.remote.dto.SolicitudActionRequest
+import com.alpaca.knm.data.remote.dto.SolicitudCreateRequest
 import com.alpaca.knm.data.remote.dto.SolicitudDto
 import retrofit2.Response
 import retrofit2.http.*
 
-/**
- * API Service para gestión de Solicitudes de Anticipo
- * El token de autenticación se agrega automáticamente via interceptor
- */
 interface SolicitudApiService {
+    
+    @POST("advances")
+    suspend fun createSolicitud(
+        @Body request: SolicitudCreateRequest
+    ): Response<SolicitudDto>
     
     @GET("advances")
     suspend fun getAllSolicitudes(): Response<List<SolicitudDto>>
+    
+    @GET("advances/mis-solicitudes")
+    suspend fun getMisSolicitudes(): Response<List<SolicitudDto>>
     
     @GET("advances")
     suspend fun getSolicitudesByStatus(

@@ -4,9 +4,6 @@ import androidx.room.*
 import com.alpaca.knm.data.local.entity.AlpacaEntity
 import kotlinx.coroutines.flow.Flow
 
-/**
- * DAO para operaciones de Alpaca en Room
- */
 @Dao
 interface AlpacaDao {
     

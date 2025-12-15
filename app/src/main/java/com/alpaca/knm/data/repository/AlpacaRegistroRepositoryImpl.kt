@@ -7,9 +7,6 @@ import com.alpaca.knm.domain.model.AlpacaRegistro
 import com.alpaca.knm.data.remote.dto.RazaInfo
 import com.alpaca.knm.domain.repository.AlpacaRegistroRepository
 
-/**
- * Implementación del repositorio de registro de alpacas
- */
 class AlpacaRegistroRepositoryImpl : AlpacaRegistroRepository {
     
     private val apiService: AlpacaRegistroApiService = 

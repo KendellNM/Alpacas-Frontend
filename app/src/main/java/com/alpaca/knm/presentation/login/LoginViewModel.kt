@@ -5,14 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.alpaca.knm.domain.model.User
-import com.alpaca.knm.domain.usecase.LoginUseCase
-import com.alpaca.knm.domain.usecase.ValidateCredentialsUseCase
+import com.alpaca.knm.domain.usecase.auth.LoginUseCase
+import com.alpaca.knm.domain.usecase.auth.ValidateCredentialsUseCase
 import kotlinx.coroutines.launch
 
-/**
- * ViewModel para la pantalla de Login
- * Maneja la lógica de presentación y estado de la UI
- */
 class LoginViewModel(
     private val loginUseCase: LoginUseCase,
     private val validateCredentialsUseCase: ValidateCredentialsUseCase
@@ -25,7 +21,6 @@ class LoginViewModel(
     val navigationEvent: LiveData<NavigationEvent> = _navigationEvent
     
     fun onLoginClicked(username: String, password: String) {
-        // Validar credenciales
         val validation = validateCredentialsUseCase(username, password)
         
         if (!validation.isValid) {
@@ -36,7 +31,6 @@ class LoginViewModel(
             return
         }
         
-        // Iniciar login
         performLogin(username, password)
     }
     
@@ -62,9 +56,6 @@ class LoginViewModel(
     }
 }
 
-/**
- * Estados de la UI de Login
- */
 sealed class LoginUiState {
     object Idle : LoginUiState()
     object Loading : LoginUiState()
@@ -76,9 +67,6 @@ sealed class LoginUiState {
     ) : LoginUiState()
 }
 
-/**
- * Eventos de navegación
- */
 sealed class NavigationEvent {
     data class NavigateToHome(val user: User) : NavigationEvent()
 }

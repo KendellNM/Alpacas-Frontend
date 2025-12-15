@@ -18,6 +18,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputEditText
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import android.app.DatePickerDialog
+import java.util.Calendar
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -41,7 +43,6 @@ class UsersActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_users)
-        
         setupViews()
         setupRecyclerView()
         loadUsers()
@@ -53,7 +54,6 @@ class UsersActivity : AppCompatActivity() {
         progressBar = findViewById(R.id.progressBar)
         fabAdd = findViewById(R.id.fabAdd)
         emptyView = findViewById(R.id.emptyState)
-        
         toolbar.setNavigationOnClickListener { finish() }
         fabAdd.setOnClickListener { showCreateUserDialog() }
     }
@@ -82,7 +82,6 @@ class UsersActivity : AppCompatActivity() {
                         users.clear()
                         users.addAll(response.body()!!)
                         adapter.notifyDataSetChanged()
-                        
                         if (users.isEmpty()) {
                             emptyView.visibility = View.VISIBLE
                         } else {
@@ -108,10 +107,25 @@ class UsersActivity : AppCompatActivity() {
         val etEmail = dialogView.findViewById<TextInputEditText>(R.id.etEmail)
         val etFullName = dialogView.findViewById<TextInputEditText>(R.id.etFullName)
         val actvRole = dialogView.findViewById<AutoCompleteTextView>(R.id.actvRole)
+        val layoutGanaderoFields = dialogView.findViewById<View>(R.id.layoutGanaderoFields)
+        val etDni = dialogView.findViewById<TextInputEditText>(R.id.etDni)
+        val etPhone = dialogView.findViewById<TextInputEditText>(R.id.etPhone)
+        val actvSexo = dialogView.findViewById<AutoCompleteTextView>(R.id.actvSexo)
+        val tilBirthDate = dialogView.findViewById<View>(R.id.tilBirthDate)
+        
+        tilBirthDate.visibility = View.GONE
+        
+        val sexos = arrayOf("Masculino", "Femenino")
+        actvSexo.setAdapter(ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, sexos))
         
         val roles = arrayOf("ROLE_GANADERO", "ROLE_ADMIN")
         actvRole.setAdapter(ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, roles))
         actvRole.setText("ROLE_GANADERO", false)
+        layoutGanaderoFields.visibility = View.VISIBLE
+        
+        actvRole.setOnItemClickListener { _, _, position, _ ->
+            layoutGanaderoFields.visibility = if (roles[position] == "ROLE_GANADERO") View.VISIBLE else View.GONE
+        }
         
         AlertDialog.Builder(this)
             .setTitle("Crear Usuario")
@@ -124,7 +138,28 @@ class UsersActivity : AppCompatActivity() {
                 val role = actvRole.text.toString()
                 
                 if (username.isNotEmpty() && password.isNotEmpty()) {
-                    createUser(CreateUserRequest(username, password, email.ifEmpty { null }, fullName.ifEmpty { null }, role))
+                    val dni = etDni.text.toString().trim()
+                    val phone = etPhone.text.toString().trim()
+                    val sexo = actvSexo.text.toString().trim()
+                    
+                    if (role == "ROLE_GANADERO" && (fullName.isEmpty() || dni.isEmpty())) {
+                        Toast.makeText(this, "Para ganadero: nombre completo y DNI son requeridos", Toast.LENGTH_SHORT).show()
+                        return@setPositiveButton
+                    }
+                    
+                    val dniForUser = if (role == "ROLE_GANADERO") dni.ifEmpty { null } else null
+                    createUser(CreateUserRequest(
+                        username = username, 
+                        password = password, 
+                        email = email.ifEmpty { null }, 
+                        fullName = fullName.ifEmpty { null }, 
+                        role = role, 
+                        dni = dniForUser,
+                        telefono = phone.ifEmpty { null },
+                        numeroAlpacas = null,
+                        sexo = sexo.ifEmpty { null },
+                        fechaNacimiento = null
+                    ))
                 } else {
                     Toast.makeText(this, "Usuario y contraseña son requeridos", Toast.LENGTH_SHORT).show()
                 }
@@ -134,33 +169,99 @@ class UsersActivity : AppCompatActivity() {
     }
     
     private fun showEditUserDialog(user: UserDto) {
+        progressBar.visibility = View.VISIBLE
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val response = apiService.getUserDetail(user.id)
+                withContext(Dispatchers.Main) {
+                    progressBar.visibility = View.GONE
+                    if (response.isSuccessful && response.body() != null) {
+                        showEditUserDialogWithDetail(response.body()!!)
+                    } else {
+                        Toast.makeText(this@UsersActivity, "Error al cargar datos", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    progressBar.visibility = View.GONE
+                    Toast.makeText(this@UsersActivity, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+    
+    private fun showEditUserDialogWithDetail(user: com.alpaca.knm.data.remote.dto.UserDetailDto) {
         val dialogView = layoutInflater.inflate(R.layout.dialog_user_form, null)
         val etUsername = dialogView.findViewById<TextInputEditText>(R.id.etUsername)
         val etPassword = dialogView.findViewById<TextInputEditText>(R.id.etPassword)
         val etEmail = dialogView.findViewById<TextInputEditText>(R.id.etEmail)
         val etFullName = dialogView.findViewById<TextInputEditText>(R.id.etFullName)
         val actvRole = dialogView.findViewById<AutoCompleteTextView>(R.id.actvRole)
+        val layoutGanaderoFields = dialogView.findViewById<View>(R.id.layoutGanaderoFields)
+        val etDni = dialogView.findViewById<TextInputEditText>(R.id.etDni)
+        val etPhone = dialogView.findViewById<TextInputEditText>(R.id.etPhone)
+        val actvSexo = dialogView.findViewById<AutoCompleteTextView>(R.id.actvSexo)
+        val etBirthDate = dialogView.findViewById<TextInputEditText>(R.id.etBirthDate)
         
         etUsername.setText(user.username)
         etUsername.isEnabled = false
         etEmail.setText(user.email ?: "")
         etFullName.setText(user.fullName ?: "")
-        etPassword.hint = "Nueva contraseña (dejar vacío para no cambiar)"
+        
+        val passwordLayout = etPassword.parent.parent as View
+        passwordLayout.visibility = View.GONE
+        
+        val sexos = arrayOf("Masculino", "Femenino")
+        actvSexo.setAdapter(ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, sexos))
+        
+        etDni.setText(user.dni ?: "")
+        etPhone.setText(user.telefono ?: "")
+        if (!user.sexo.isNullOrEmpty()) {
+            actvSexo.setText(user.sexo, false)
+        }
+        
+        var selectedBirthDate: String? = user.fechaNacimiento
+        if (!user.fechaNacimiento.isNullOrEmpty()) {
+            try {
+                val parts = user.fechaNacimiento.split("-")
+                if (parts.size == 3) {
+                    etBirthDate.setText("${parts[2]}/${parts[1]}/${parts[0]}")
+                }
+            } catch (_: Exception) { }
+        }
+        etBirthDate.setOnClickListener {
+            val calendar = Calendar.getInstance()
+            DatePickerDialog(this, { _, year, month, day ->
+                selectedBirthDate = String.format("%04d-%02d-%02d", year, month + 1, day)
+                etBirthDate.setText(String.format("%02d/%02d/%04d", day, month + 1, year))
+            }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show()
+        }
         
         val roles = arrayOf("ROLE_GANADERO", "ROLE_ADMIN")
         actvRole.setAdapter(ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, roles))
         actvRole.setText(user.role, false)
         
+        if (user.role == "ROLE_GANADERO") {
+            layoutGanaderoFields.visibility = View.VISIBLE
+            etDni.isEnabled = false
+        }
+        
+        actvRole.setOnItemClickListener { _, _, position, _ ->
+            layoutGanaderoFields.visibility = if (roles[position] == "ROLE_GANADERO") View.VISIBLE else View.GONE
+        }
+        
         AlertDialog.Builder(this)
             .setTitle("Editar Usuario")
             .setView(dialogView)
             .setPositiveButton("Guardar") { _, _ ->
-                val password = etPassword.text.toString().trim()
                 val email = etEmail.text.toString().trim()
                 val fullName = etFullName.text.toString().trim()
                 val role = actvRole.text.toString()
+                val phone = etPhone.text.toString().trim()
+                val sexo = actvSexo.text.toString().trim()
                 
-                updateUser(user.id, email.ifEmpty { null }, fullName.ifEmpty { null }, role, password.ifEmpty { null })
+                updateUser(user.id, email.ifEmpty { null }, fullName.ifEmpty { null }, role, null, 
+                    phone.ifEmpty { null }, sexo.ifEmpty { null }, selectedBirthDate)
             }
             .setNegativeButton("Cancelar", null)
             .show()
@@ -198,11 +299,14 @@ class UsersActivity : AppCompatActivity() {
         }
     }
     
-    private fun updateUser(id: Int, email: String?, fullName: String?, role: String?, password: String?) {
+    private fun updateUser(id: Int, email: String?, fullName: String?, role: String?, password: String?,
+                          telefono: String? = null, sexo: String? = null, fechaNacimiento: String? = null) {
         progressBar.visibility = View.VISIBLE
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val request = com.alpaca.knm.data.remote.dto.UpdateUserRequest(email, fullName, role, password)
+                val request = com.alpaca.knm.data.remote.dto.UpdateUserRequest(
+                    email, fullName, role, password, telefono, sexo, fechaNacimiento
+                )
                 val response = apiService.updateUser(id, request)
                 withContext(Dispatchers.Main) {
                     progressBar.visibility = View.GONE

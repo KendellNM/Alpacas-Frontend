@@ -82,21 +82,18 @@ class AlpacaFormActivity : AppCompatActivity() {
     }
     
     private fun setupDropdowns() {
-        // Raza
         val razas = listOf(
             getString(R.string.alpaca_raza_huacaya),
             getString(R.string.alpaca_raza_suri)
         )
         actvRaza.setAdapter(ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, razas))
         
-        // Sexo
         val sexos = listOf(
             getString(R.string.alpaca_sexo_macho),
             getString(R.string.alpaca_sexo_hembra)
         )
         actvSexo.setAdapter(ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, sexos))
         
-        // Estado
         val estados = listOf(
             getString(R.string.alpaca_estado_activo),
             getString(R.string.alpaca_estado_vendido),
@@ -104,7 +101,6 @@ class AlpacaFormActivity : AppCompatActivity() {
         )
         actvEstado.setAdapter(ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, estados))
         
-        // Defaults
         actvRaza.setText(razas[0], false)
         actvSexo.setText(sexos[0], false)
         actvEstado.setText(estados[0], false)
@@ -147,13 +143,11 @@ class AlpacaFormActivity : AppCompatActivity() {
     }
     
     private fun saveAlpaca() {
-        // Clear errors
         tilNombre.error = null
         tilColor.error = null
         tilEdad.error = null
         tilPeso.error = null
         
-        // Get values
         val nombre = etNombre.text.toString().trim()
         val razaStr = actvRaza.text.toString()
         val color = etColor.text.toString().trim()
@@ -163,7 +157,6 @@ class AlpacaFormActivity : AppCompatActivity() {
         val estadoStr = actvEstado.text.toString()
         val observaciones = etObservaciones.text.toString().trim().ifEmpty { null }
         
-        // Validate
         var isValid = true
         
         if (nombre.isEmpty()) {

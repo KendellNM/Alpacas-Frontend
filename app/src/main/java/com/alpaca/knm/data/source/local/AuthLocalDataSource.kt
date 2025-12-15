@@ -4,10 +4,6 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.alpaca.knm.domain.model.User
 
-/**
- * Fuente de datos local para autenticación
- * Maneja el almacenamiento local (SharedPreferences)
- */
 class AuthLocalDataSource(context: Context) {
     
     private val prefs: SharedPreferences = context.getSharedPreferences(

@@ -40,20 +40,16 @@ class GanaderosAdapter(
         fun bind(ganadero: Ganadero) {
             tvName.text = ganadero.fullName
             
-            // DNI y comunidad en una línea
             val comunidad = ganadero.district.ifEmpty { ganadero.province }
             tvDni.text = "DNI: ${ganadero.dni} | $comunidad"
             
-            // Location (si existe en el layout antiguo)
             tvLocation?.text = "${ganadero.district}, ${ganadero.province}, ${ganadero.department}"
             
-            // Alpacas count (si existe)
             tvAlpacasCount?.text = itemView.context.getString(
                 R.string.ganaderos_alpacas,
                 ganadero.alpacasCount
             )
             
-            // Status badge
             tvStatus?.let {
                 val status = ganadero.status ?: "activo"
                 it.text = status.uppercase()
@@ -65,10 +61,8 @@ class GanaderosAdapter(
                 }
             }
             
-            // Scoring
             tvScoring?.text = (ganadero.scoring ?: 50).toString()
             
-            // Avatar color based on status
             ivAvatar?.let {
                 val status = ganadero.status ?: "activo"
                 when (status.lowercase()) {

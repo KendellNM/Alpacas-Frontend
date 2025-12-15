@@ -4,9 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.alpaca.knm.domain.repository.AlpacaRegistroRepository
 
-/**
- * Factory para AlpacaRegistroViewModel
- */
 class AlpacaRegistroViewModelFactory(
     private val repository: AlpacaRegistroRepository
 ) : ViewModelProvider.Factory {

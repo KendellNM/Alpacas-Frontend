@@ -2,8 +2,8 @@ package com.alpaca.knm.presentation.ganaderos
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.alpaca.knm.domain.usecase.DeleteGanaderoUseCase
-import com.alpaca.knm.domain.usecase.GetGanaderosUseCase
+import com.alpaca.knm.domain.usecase.ganadero.DeleteGanaderoUseCase
+import com.alpaca.knm.domain.usecase.ganadero.GetGanaderosUseCase
 
 class GanaderosViewModelFactory(
     private val getGanaderosUseCase: GetGanaderosUseCase,

@@ -4,7 +4,7 @@
     <!-- Login Screen -->
     <string name="login_welcome">Bienvenido(a)</string>
     <string name="login_subtitle">Gestión de Ganaderos y Anticipos</string>
-    <string name="login_username_hint">Usuario / DNI</string>
+    <string name="login_username_hint">Usuario</string>
     <string name="login_password_hint">Contraseña</string>
     <string name="login_button">Iniciar Sesión</string>
     <string name="login_logo_description">Logo Alpaca</string>

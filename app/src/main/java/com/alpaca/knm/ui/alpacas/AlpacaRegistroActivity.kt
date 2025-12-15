@@ -22,10 +22,6 @@ import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 
-/**
- * Activity para registro simplificado de alpacas por raza
- * Soporta modo creación y edición
- */
 class AlpacaRegistroActivity : AppCompatActivity() {
     
     private lateinit var viewModel: AlpacaRegistroViewModel
@@ -48,10 +44,8 @@ class AlpacaRegistroActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_alpaca_registro)
         
-        // Obtener ganaderoId del usuario logueado
         ganaderoId = SessionManager.getUserId(this)
         
-        // Verificar si es modo edición
         registroId = intent.getIntExtra("REGISTRO_ID", -1).takeIf { it != -1 }
         isEditMode = registroId != null
         
@@ -96,7 +90,6 @@ class AlpacaRegistroActivity : AppCompatActivity() {
         btnGuardar = findViewById(R.id.btnGuardar)
         progressBar = findViewById(R.id.progressBar)
         
-        // Configurar dropdown de razas
         val razas = AlpacaRaza.values().map { it.name }
         val adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, razas)
         actvRaza.setAdapter(adapter)
@@ -105,7 +98,6 @@ class AlpacaRegistroActivity : AppCompatActivity() {
     private fun setupListeners() {
         toolbar.setNavigationOnClickListener { finish() }
         
-        // Calcular total automáticamente cuando cambian adultos o crías
         val textWatcher = object : TextWatcher {
             override fun afterTextChanged(s: Editable?) { actualizarResumen() }
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -132,7 +124,6 @@ class AlpacaRegistroActivity : AppCompatActivity() {
         val adultos = etAdultos.text.toString().toIntOrNull()
         val crias = etCrias.text.toString().toIntOrNull()
         
-        // Validaciones
         val razaValida = AlpacaRaza.values().any { it.name == raza }
         if (raza.isEmpty() || !razaValida) {
             Toast.makeText(this, "Seleccione una raza válida", Toast.LENGTH_SHORT).show()
@@ -153,7 +144,6 @@ class AlpacaRegistroActivity : AppCompatActivity() {
             return
         }
         
-        // Convertir raza a formato esperado por el backend (Huacaya, Suri)
         val razaFormateada = raza.lowercase().replaceFirstChar { it.uppercase() }
         
         if (isEditMode && registroId != null) {

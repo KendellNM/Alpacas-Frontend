@@ -55,7 +55,6 @@ class AlpacasAdapter(
             tvSexo.text = alpaca.sexo.name
             tvEstado.text = alpaca.estado.name
             
-            // Color del estado
             when (alpaca.estado) {
                 com.alpaca.knm.domain.model.AlpacaEstado.ACTIVO -> {
                     tvEstado.setBackgroundResource(R.drawable.bg_status_approved)

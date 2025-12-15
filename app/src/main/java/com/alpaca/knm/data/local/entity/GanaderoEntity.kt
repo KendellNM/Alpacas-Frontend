@@ -4,9 +4,6 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.alpaca.knm.domain.model.Ganadero
 
-/**
- * Entidad Room para Ganadero
- */
 @Entity(tableName = "ganaderos")
 data class GanaderoEntity(
     @PrimaryKey

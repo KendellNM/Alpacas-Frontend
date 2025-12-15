@@ -1,5 +1,10 @@
 # Sistema de Gestión de Anticipos - Ganaderos de Alpacas
 
+**Alumno:** Kendell Norabuena  
+**Docente:** José de Jesús Alzati Zárate
+
+---
+
 ## Descripción
 
 Aplicación móvil Android para facilitar el acceso a financiamiento a ganaderos de alpacas en comunidades rurales, permitiendo solicitar anticipos basados en su producción de fibra.
@@ -14,15 +19,16 @@ Aplicación móvil Android para facilitar el acceso a financiamiento a ganaderos
 
 - **Autenticación** - Login de usuarios y administradores
 - **Gestión de Alpacas** - CRUD de alpacas por ganadero
-- **Gestión de Ganaderos** - Registro y administración
+- **Gestión de Usuarios** - Registro y administración
 - **Solicitudes de Anticipo** - Crear y dar seguimiento
+- **Dashboard** - Resumen para administradores
 
 ## Tecnologías
 
 - Kotlin + Android SDK
 - MVVM + Clean Architecture
-- Retrofit (API REST) + Room (BD local)
-- Material Design
+- Retrofit (API REST)
+- Material Design 3
 
 ## Requisitos
 
@@ -33,22 +39,26 @@ Aplicación móvil Android para facilitar el acceso a financiamiento a ganaderos
 
 ## Changelog
 
-### [Futuro]
+### [v1.2.0]
 
-- 🔜 CRUD de alpacas y ganaderos
-- 🔜 Solicitudes de anticipo
-- 🔜 Dashboard administrativo
+- ✅ CRUD de alpacas
+- ✅ CRUD de usuarios
+- ✅ Gestión de solicitudes de anticipo
+- ✅ Dashboard administrativo con estadísticas
+- ✅ Manejo de errores mejorado
 
 ### [v1.1.0]
 
 - ✅ Sistema de login funcional
 - ✅ Autenticación de usuarios
 - ✅ Validación de credenciales
+- ✅ Integración con backend en Render
 
 ### [v1.0.0]
 
 - ✅ Estructura inicial del proyecto
 - ✅ Diseño de pantallas
 - ✅ Configuración base de Android
+- ✅ Arquitectura Clean Architecture + MVVM
 
 ---

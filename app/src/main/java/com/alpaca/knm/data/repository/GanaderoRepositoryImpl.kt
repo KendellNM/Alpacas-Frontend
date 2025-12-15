@@ -1,20 +1,16 @@
 package com.alpaca.knm.data.repository
 
-import com.alpaca.knm.data.source.remote.GanaderoRemoteDataSource
+import com.alpaca.knm.data.remote.datasource.GanaderoRemoteDataSource
 import com.alpaca.knm.domain.model.Ganadero
 import com.alpaca.knm.domain.repository.GanaderoRepository
 
-/**
- * Implementación del repositorio de Ganaderos
- */
 class GanaderoRepositoryImpl(
     private val remoteDataSource: GanaderoRemoteDataSource
 ) : GanaderoRepository {
     
     override suspend fun getGanaderos(token: String): Result<List<Ganadero>> {
         return try {
-            val ganaderos = remoteDataSource.getGanaderos(token)
-            Result.success(ganaderos)
+            Result.success(remoteDataSource.getGanaderos(token))
         } catch (e: Exception) {
             Result.failure(e)
         }
@@ -22,8 +18,7 @@ class GanaderoRepositoryImpl(
     
     override suspend fun getGanaderoById(token: String, id: String): Result<Ganadero> {
         return try {
-            val ganadero = remoteDataSource.getGanaderoById(token, id)
-            Result.success(ganadero)
+            Result.success(remoteDataSource.getGanaderoById(token, id))
         } catch (e: Exception) {
             Result.failure(e)
         }
@@ -31,21 +26,15 @@ class GanaderoRepositoryImpl(
     
     override suspend fun createGanadero(token: String, ganadero: Ganadero): Result<Ganadero> {
         return try {
-            val created = remoteDataSource.createGanadero(token, ganadero)
-            Result.success(created)
+            Result.success(remoteDataSource.createGanadero(token, ganadero))
         } catch (e: Exception) {
             Result.failure(e)
         }
     }
     
-    override suspend fun updateGanadero(
-        token: String,
-        id: String,
-        ganadero: Ganadero
-    ): Result<Ganadero> {
+    override suspend fun updateGanadero(token: String, id: String, ganadero: Ganadero): Result<Ganadero> {
         return try {
-            val updated = remoteDataSource.updateGanadero(token, id, ganadero)
-            Result.success(updated)
+            Result.success(remoteDataSource.updateGanadero(token, id, ganadero))
         } catch (e: Exception) {
             Result.failure(e)
         }

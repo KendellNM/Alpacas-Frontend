@@ -35,15 +35,17 @@
             <!-- Avatar / Imagen de Perfil -->
             <ImageView
                 android:id="@+id/ivAvatar"
-                android:layout_width="180dp"
-                android:layout_height="180dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 android:layout_marginTop="@dimen/spacing_large"
                 android:contentDescription="@string/profile_avatar_description"
-                android:src="@android:drawable/sym_def_app_icon"
+                android:src="@drawable/ic_person"
+                android:background="@drawable/bg_status_approved"
+                android:padding="24dp"
+                app:tint="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvTitleProfile"
-                tools:srcCompat="@tools:sample/avatars" />
+                app:layout_constraintTop_toBottomOf="@+id/tvTitleProfile" />
 
             <!-- Campo 1: Nombre -->
             <TextView
@@ -132,34 +134,35 @@
                 app:layout_constraintTop_toBottomOf="@+id/lblSexo"
                 tools:text="Masculino" />
 
-            <!-- Campo 4: Ubicación -->
+            <!-- Campo 4: Número de Alpacas -->
             <TextView
-                android:id="@+id/lblUbicacion"
+                android:id="@+id/lblNumeroAlpacas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing_large"
                 android:layout_marginTop="@dimen/spacing_medium"
-                android:text="@string/profile_location_label"
+                android:text="Número de Alpacas"
                 android:textColor="@color/text_subtitle"
                 android:textSize="@dimen/text_size_subtitle"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/etSexo" />
 
             <EditText
-                android:id="@+id/etUbicacion"
+                android:id="@+id/etNumeroAlpacas"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_marginHorizontal="@dimen/spacing_large"
                 android:layout_marginTop="@dimen/spacing_small"
                 android:background="@drawable/bg_input_pill"
-                android:hint="@string/profile_location_hint"
-                android:inputType="textPostalAddress"
+                android:hint="0"
+                android:inputType="number"
+                android:focusable="false"
                 android:paddingHorizontal="@dimen/spacing_large"
                 android:textColor="@color/text_title"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lblUbicacion"
-                tools:text="Mz D lote 24" />
+                app:layout_constraintTop_toBottomOf="@+id/lblNumeroAlpacas"
+                tools:text="25" />
 
             <!-- Botón Cerrar Sesión -->
             <com.google.android.material.button.MaterialButton
@@ -177,7 +180,7 @@
                 app:cornerRadius="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/etUbicacion" />
+                app:layout_constraintTop_toBottomOf="@+id/etNumeroAlpacas" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

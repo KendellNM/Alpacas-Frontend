@@ -1,9 +1,5 @@
 package com.alpaca.knm.domain.model
 
-/**
- * Entidad de dominio - Ganadero
- * Basado en el prototipo HTML
- */
 data class Ganadero(
     val id: String = "",
     val firstName: String,
@@ -16,14 +12,14 @@ data class Ganadero(
     val province: String = "",
     val department: String = "",
     val alpacasCount: Int = 0,
+    val birthDate: String? = null, // Fecha de nacimiento YYYY-MM-DD
+    val sexo: String? = null,
     val createdAt: String? = null,
-    // Nuevos campos del prototipo
-    val scoring: Int? = 50, // Scoring crediticio
-    val status: String? = "activo", // activo, inactivo, suspendido
+    val scoring: Int? = 50,
+    val status: String? = "activo",
     val gpsLatitud: Double? = null,
     val gpsLongitud: Double? = null,
     val foto: String? = null,
-    // Estadísticas
     val totalAnticiposRecibidos: Int? = 0,
     val montoTotalAnticipos: Double? = 0.0,
     val tasaCumplimiento: Int? = 100

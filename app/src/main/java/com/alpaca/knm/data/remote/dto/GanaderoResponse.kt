@@ -2,9 +2,6 @@ package com.alpaca.knm.data.remote.dto
 
 import com.google.gson.annotations.SerializedName
 
-/**
- * DTO para respuesta de ganadero
- */
 data class GanaderoResponse(
     @SerializedName("id")
     val id: String,
@@ -39,13 +36,19 @@ data class GanaderoResponse(
     @SerializedName("alpacas_count")
     val alpacasCount: Int = 0,
     
+    @SerializedName("birth_date")
+    val birthDate: String? = null,
+    
+    @SerializedName("sexo")
+    val sexo: String? = null,
+    
+    @SerializedName("status")
+    val status: String = "ACTIVO",
+    
     @SerializedName("created_at")
     val createdAt: String?
 )
 
-/**
- * DTO para crear/actualizar ganadero
- */
 data class GanaderoRequest(
     @SerializedName("first_name")
     val firstName: String,
@@ -72,5 +75,14 @@ data class GanaderoRequest(
     val province: String,
     
     @SerializedName("department")
-    val department: String
+    val department: String,
+    
+    @SerializedName("birth_date")
+    val birthDate: String? = null,
+    
+    @SerializedName("sexo")
+    val sexo: String? = null,
+    
+    @SerializedName("user_id")
+    val userId: Int? = null
 )

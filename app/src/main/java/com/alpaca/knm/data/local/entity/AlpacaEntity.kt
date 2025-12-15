@@ -8,9 +8,6 @@ import com.alpaca.knm.domain.model.AlpacaRaza
 import com.alpaca.knm.domain.model.AlpacaSexo
 import java.util.Date
 
-/**
- * Entidad Room para Alpaca
- */
 @Entity(tableName = "alpacas")
 data class AlpacaEntity(
     @PrimaryKey

@@ -2,10 +2,10 @@ package com.alpaca.knm.data.remote.dto
 
 import com.google.gson.annotations.SerializedName
 
-/**
- * DTO para la respuesta de login
- */
 data class LoginResponse(
+    @SerializedName("id")
+    val id: Int,
+    
     @SerializedName("username")
     val username: String,
     

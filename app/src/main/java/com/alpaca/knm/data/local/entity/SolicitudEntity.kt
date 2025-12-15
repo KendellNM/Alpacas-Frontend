@@ -6,9 +6,6 @@ import com.alpaca.knm.domain.model.Solicitud
 import com.alpaca.knm.domain.model.SolicitudStatus
 import java.util.Date
 
-/**
- * Entidad Room para Solicitud
- */
 @Entity(tableName = "solicitudes")
 data class SolicitudEntity(
     @PrimaryKey

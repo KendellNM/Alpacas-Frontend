@@ -5,9 +5,6 @@ import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Header
 
-/**
- * API Service para Dashboard
- */
 interface DashboardApiService {
     
     @GET("dashboard/stats")

@@ -63,9 +63,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true"
-                    android:text="Pendiente (4)"
-                    app:chipBackgroundColor="@color/danger"
-                    android:textColor="@color/white" />
+                    android:text="Pendiente (0)" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipApproved"
@@ -79,14 +77,14 @@
                     style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Desembolsada (6)" />
+                    android:text="Desembolsada (0)" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipRejected"
                     style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Rechazada" />
+                    android:text="Rechazada (0)" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipAll"

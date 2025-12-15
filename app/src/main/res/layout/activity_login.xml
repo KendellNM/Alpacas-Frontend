@@ -122,9 +122,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Prueba con `ganadero` o `operador`"
+            android:text="Usuario: admin | Contraseña: password123"
             android:textColor="@color/text_secondary"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:gravity="center" />
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Nota: Render tarda en levantar.\nQuizá deba iniciar sesión dos veces."
+            android:textColor="@color/text_secondary"
+            android:textSize="11sp"
+            android:gravity="center" />
 
     </LinearLayout>
 </ScrollView>

@@ -26,7 +26,7 @@
         
         <!-- Login Activity - Pantalla de inicio -->
         <activity
-            android:name=".ui.LoginActivity"
+            android:name=".ui.login.LoginActivity"
             android:exported="true"
             android:theme="@style/Theme.Alpaca">
             <intent-filter>
@@ -37,37 +37,37 @@
         
         <!-- Dashboard Activity - Pantalla principal para ROLE_GANADERO -->
         <activity
-            android:name=".ui.DashboardActivity"
+            android:name=".ui.dashboard.DashboardActivity"
             android:exported="false"
             android:theme="@style/Theme.Alpaca" />
         
         <!-- Request Activity - Solicitud de anticipo -->
         <activity
-            android:name=".ui.RequestActivity"
+            android:name=".ui.request.RequestActivity"
             android:exported="false"
             android:theme="@style/Theme.Alpaca" />
         
         <!-- Profile Activity - Perfil de usuario -->
         <activity
-            android:name=".ui.ProfileActivity"
+            android:name=".ui.profile.ProfileActivity"
             android:exported="false"
             android:theme="@style/Theme.Alpaca" />
         
         <!-- Admin Dashboard Activity - Pantalla principal para ROLE_ADMIN -->
         <activity
-            android:name=".ui.AdminDashboardActivity"
+            android:name=".ui.dashboard.AdminDashboardActivity"
             android:exported="false"
             android:theme="@style/Theme.Alpaca" />
         
         <!-- Ganaderos Activity - Lista de ganaderos (ADMIN) -->
         <activity
-            android:name=".ui.GanaderosActivity"
+            android:name=".ui.ganaderos.GanaderosActivity"
             android:exported="false"
             android:theme="@style/Theme.Alpaca" />
         
         <!-- Ganadero Form Activity - Crear/Editar ganadero (ADMIN) -->
         <activity
-            android:name=".ui.GanaderoFormActivity"
+            android:name=".ui.ganaderos.GanaderoFormActivity"
             android:exported="false"
             android:theme="@style/Theme.Alpaca" />
         
@@ -92,6 +92,12 @@
         <!-- Mis Alpacas Activity - Ver alpacas del ganadero -->
         <activity
             android:name=".ui.alpacas.MisAlpacasActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Alpaca" />
+        
+        <!-- Alpacas Registros Activity - Ver todos los registros (ADMIN) -->
+        <activity
+            android:name=".ui.alpacas.AlpacasRegistrosActivity"
             android:exported="false"
             android:theme="@style/Theme.Alpaca" />
         

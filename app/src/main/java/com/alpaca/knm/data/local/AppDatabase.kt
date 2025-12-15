@@ -6,21 +6,21 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.alpaca.knm.data.local.dao.AlpacaDao
 import com.alpaca.knm.data.local.dao.GanaderoDao
+import com.alpaca.knm.data.local.dao.PendingSolicitudDao
 import com.alpaca.knm.data.local.dao.SolicitudDao
 import com.alpaca.knm.data.local.entity.AlpacaEntity
 import com.alpaca.knm.data.local.entity.GanaderoEntity
+import com.alpaca.knm.data.local.entity.PendingSolicitudEntity
 import com.alpaca.knm.data.local.entity.SolicitudEntity
 
-/**
- * Base de datos local Room para modo offline
- */
 @Database(
     entities = [
         GanaderoEntity::class,
         AlpacaEntity::class,
-        SolicitudEntity::class
+        SolicitudEntity::class,
+        PendingSolicitudEntity::class
     ],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
@@ -28,6 +28,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun ganaderoDao(): GanaderoDao
     abstract fun alpacaDao(): AlpacaDao
     abstract fun solicitudDao(): SolicitudDao
+    abstract fun pendingSolicitudDao(): PendingSolicitudDao
     
     companion object {
         @Volatile

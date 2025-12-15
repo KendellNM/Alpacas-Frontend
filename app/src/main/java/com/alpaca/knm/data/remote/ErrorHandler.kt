@@ -8,21 +8,14 @@ import java.io.IOException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 
-/**
- * Manejador centralizado de errores de API
- */
 object ErrorHandler {
     
     private val gson = Gson()
     
-    /**
-     * Convierte una respuesta HTTP en una excepción apropiada
-     */
     fun <T> handleError(response: Response<T>): ApiException {
         val code = response.code()
         val errorBody = response.errorBody()?.string()
         
-        // Intentar parsear el error del backend
         val errorResponse = try {
             errorBody?.let { gson.fromJson(it, ErrorResponse::class.java) }
         } catch (e: Exception) {
@@ -47,9 +40,6 @@ object ErrorHandler {
         }
     }
     
-    /**
-     * Convierte una excepción de red en ApiException
-     */
     fun handleException(exception: Throwable): ApiException {
         return when (exception) {
             is ApiException -> exception
@@ -68,9 +58,6 @@ object ErrorHandler {
         }
     }
     
-    /**
-     * Mensajes por defecto según código HTTP
-     */
     private fun getDefaultMessage(code: Int): String {
         return when (code) {
             400 -> "Datos inválidos. Verifica la información ingresada"

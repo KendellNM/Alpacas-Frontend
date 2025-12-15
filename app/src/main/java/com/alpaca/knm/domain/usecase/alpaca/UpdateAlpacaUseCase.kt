@@ -7,7 +7,6 @@ class UpdateAlpacaUseCase(
     private val repository: AlpacaRepository
 ) {
     suspend operator fun invoke(id: Long, alpaca: Alpaca): Result<Alpaca> {
-        // Validaciones
         if (alpaca.nombre.isBlank()) {
             return Result.failure(IllegalArgumentException("El nombre es obligatorio"))
         }

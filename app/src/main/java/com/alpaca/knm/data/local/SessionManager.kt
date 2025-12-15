@@ -3,9 +3,6 @@ package com.alpaca.knm.data.local
 import android.content.Context
 import android.content.SharedPreferences
 
-/**
- * Maneja la sesión del usuario (token JWT y datos básicos)
- */
 object SessionManager {
     private const val PREF_NAME = "alpaca_session"
     private const val KEY_TOKEN = "jwt_token"

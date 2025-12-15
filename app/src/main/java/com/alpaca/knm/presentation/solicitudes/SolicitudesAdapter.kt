@@ -54,27 +54,21 @@ class SolicitudesAdapter(
         private val btnReject: MaterialButton = itemView.findViewById(R.id.btnReject)
         
         fun bind(solicitud: Solicitud) {
-            // ID de solicitud
             tvSolicitudId?.text = "SOLICITUD #${solicitud.id}"
             
-            // Nombre del ganadero
             tvGanaderoName.text = solicitud.ganaderoNombre
             
-            // Info: Scoring y Kg
             val scoring = solicitud.scoring ?: 50
             tvKilograms.text = "Scoring: $scoring | ${String.format("%.2f", solicitud.kilograms)} KG"
             
-            // Monto
             val currencyFormat = NumberFormat.getCurrencyInstance(Locale("es", "PE"))
             tvAmount.text = currencyFormat.format(solicitud.totalAmount)
             
-            // Fecha (si existe)
             tvDate?.let {
                 val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
                 it.text = dateFormat.format(solicitud.requestDate)
             }
             
-            // Recomendación (basada en scoring)
             tvRecommendation?.let {
                 if (scoring >= 60) {
                     it.text = "Rec: APROBAR"
@@ -85,7 +79,6 @@ class SolicitudesAdapter(
                 }
             }
             
-            // Status y visibilidad de acciones
             when (solicitud.status) {
                 SolicitudStatus.PENDIENTE -> {
                     tvStatus.text = "PENDIENTE"

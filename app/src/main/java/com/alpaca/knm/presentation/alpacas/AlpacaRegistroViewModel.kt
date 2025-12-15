@@ -9,9 +9,6 @@ import com.alpaca.knm.data.remote.dto.RazaInfo
 import com.alpaca.knm.domain.repository.AlpacaRegistroRepository
 import kotlinx.coroutines.launch
 
-/**
- * ViewModel para registro de alpacas
- */
 class AlpacaRegistroViewModel(
     private val repository: AlpacaRegistroRepository
 ) : ViewModel() {
@@ -34,7 +31,7 @@ class AlpacaRegistroViewModel(
         viewModelScope.launch {
             repository.getRazas()
                 .onSuccess { _razas.value = it }
-                .onFailure { /* usar lista por defecto */ }
+                .onFailure { }
         }
     }
     

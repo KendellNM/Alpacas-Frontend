@@ -84,23 +84,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true"
-                    android:text="Activos (8)"
-                    app:chipBackgroundColor="@color/primary"
-                    android:textColor="@color/white" />
+                    android:text="Activos (0)" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipInactivos"
                     style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Inactivos (2)" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipComunidad"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Comunidad A" />
+                    android:text="Inactivos (0)" />
             </com.google.android.material.chip.ChipGroup>
         </HorizontalScrollView>
     </LinearLayout>

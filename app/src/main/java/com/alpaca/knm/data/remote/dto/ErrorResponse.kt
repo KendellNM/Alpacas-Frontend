@@ -2,10 +2,6 @@ package com.alpaca.knm.data.remote.dto
 
 import com.google.gson.annotations.SerializedName
 
-/**
- * DTO para respuestas de error del backend
- * Estructura estándar de errores
- */
 data class ErrorResponse(
     @SerializedName("timestamp")
     val timestamp: String? = null,
@@ -26,9 +22,6 @@ data class ErrorResponse(
     val errors: List<FieldError>? = null
 )
 
-/**
- * Errores de validación de campos
- */
 data class FieldError(
     @SerializedName("field")
     val field: String,

@@ -2,9 +2,6 @@ package com.alpaca.knm.data.remote.dto
 
 import com.google.gson.annotations.SerializedName
 
-/**
- * DTO para la respuesta del perfil de usuario
- */
 data class UserProfileResponse(
     @SerializedName("id")
     val id: String,
@@ -22,5 +19,11 @@ data class UserProfileResponse(
     val location: String,
     
     @SerializedName("avatar_url")
-    val avatarUrl: String?
+    val avatarUrl: String?,
+    
+    @SerializedName("birth_date")
+    val birthDate: String? = null,
+    
+    @SerializedName("alpacas_count")
+    val alpacasCount: Int? = null
 )

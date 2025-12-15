@@ -2,9 +2,6 @@ package com.alpaca.knm.domain.repository
 
 import com.alpaca.knm.domain.model.Ganadero
 
-/**
- * Interfaz del repositorio de Ganaderos
- */
 interface GanaderoRepository {
     suspend fun getGanaderos(token: String): Result<List<Ganadero>>
     suspend fun getGanaderoById(token: String, id: String): Result<Ganadero>

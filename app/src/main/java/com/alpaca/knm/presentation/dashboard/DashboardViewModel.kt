@@ -5,13 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.alpaca.knm.domain.model.DashboardStats
-import com.alpaca.knm.domain.usecase.GetCurrentUserUseCase
-import com.alpaca.knm.domain.usecase.GetDashboardStatsUseCase
+import com.alpaca.knm.domain.usecase.auth.GetCurrentUserUseCase
+import com.alpaca.knm.domain.usecase.dashboard.GetDashboardStatsUseCase
 import kotlinx.coroutines.launch
 
-/**
- * ViewModel para la pantalla de Dashboard
- */
 class DashboardViewModel(
     private val getDashboardStatsUseCase: GetDashboardStatsUseCase,
     private val getCurrentUserUseCase: GetCurrentUserUseCase
@@ -70,9 +67,6 @@ class DashboardViewModel(
     }
 }
 
-/**
- * Estados de la UI del Dashboard
- */
 sealed class DashboardUiState {
     object Loading : DashboardUiState()
     data class Success(
@@ -82,9 +76,6 @@ sealed class DashboardUiState {
     data class Error(val message: String) : DashboardUiState()
 }
 
-/**
- * Eventos de navegación del Dashboard
- */
 sealed class DashboardNavigationEvent {
     object NavigateToNewRequest : DashboardNavigationEvent()
     object NavigateToWallet : DashboardNavigationEvent()

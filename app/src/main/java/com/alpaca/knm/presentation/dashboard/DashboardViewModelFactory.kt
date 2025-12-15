@@ -2,12 +2,9 @@ package com.alpaca.knm.presentation.dashboard
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.alpaca.knm.domain.usecase.GetCurrentUserUseCase
-import com.alpaca.knm.domain.usecase.GetDashboardStatsUseCase
+import com.alpaca.knm.domain.usecase.auth.GetCurrentUserUseCase
+import com.alpaca.knm.domain.usecase.dashboard.GetDashboardStatsUseCase
 
-/**
- * Factory para crear instancias de DashboardViewModel
- */
 class DashboardViewModelFactory(
     private val getDashboardStatsUseCase: GetDashboardStatsUseCase,
     private val getCurrentUserUseCase: GetCurrentUserUseCase

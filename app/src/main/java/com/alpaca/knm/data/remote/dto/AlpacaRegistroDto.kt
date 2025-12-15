@@ -2,9 +2,6 @@ package com.alpaca.knm.data.remote.dto
 
 import com.google.gson.annotations.SerializedName
 
-/**
- * DTO para registro simplificado de alpacas
- */
 data class AlpacaRegistroRequest(
     @SerializedName("ganadero_id")
     val ganaderoId: Int,
@@ -25,6 +22,9 @@ data class AlpacaRegistroResponse(
     
     @SerializedName("ganadero_id")
     val ganaderoId: Int,
+    
+    @SerializedName("ganadero_nombre")
+    val ganaderoNombre: String = "",
     
     @SerializedName("raza")
     val raza: String,

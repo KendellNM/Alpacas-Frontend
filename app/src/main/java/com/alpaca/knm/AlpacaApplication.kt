@@ -3,10 +3,6 @@ package com.alpaca.knm
 import android.app.Application
 import com.alpaca.knm.di.AppContainer
 
-/**
- * Clase Application personalizada
- * Inicializa el contenedor de dependencias
- */
 class AlpacaApplication : Application() {
     
     lateinit var appContainer: AppContainer

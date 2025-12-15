@@ -3,9 +3,6 @@ package com.alpaca.knm.domain.repository
 import com.alpaca.knm.domain.model.AlpacaRegistro
 import com.alpaca.knm.data.remote.dto.RazaInfo
 
-/**
- * Interfaz del repositorio de registro de alpacas
- */
 interface AlpacaRegistroRepository {
     suspend fun getRazas(): Result<List<RazaInfo>>
     suspend fun getRegistros(): Result<List<AlpacaRegistro>>

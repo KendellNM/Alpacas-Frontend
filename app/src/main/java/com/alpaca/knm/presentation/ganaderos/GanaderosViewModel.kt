@@ -5,13 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.alpaca.knm.domain.model.Ganadero
-import com.alpaca.knm.domain.usecase.DeleteGanaderoUseCase
-import com.alpaca.knm.domain.usecase.GetGanaderosUseCase
+import com.alpaca.knm.domain.usecase.ganadero.DeleteGanaderoUseCase
+import com.alpaca.knm.domain.usecase.ganadero.GetGanaderosUseCase
 import kotlinx.coroutines.launch
 
-/**
- * ViewModel para la lista de Ganaderos
- */
 class GanaderosViewModel(
     private val getGanaderosUseCase: GetGanaderosUseCase,
     private val deleteGanaderoUseCase: DeleteGanaderoUseCase

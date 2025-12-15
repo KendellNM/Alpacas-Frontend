@@ -4,9 +4,6 @@ import androidx.room.*
 import com.alpaca.knm.data.local.entity.GanaderoEntity
 import kotlinx.coroutines.flow.Flow
 
-/**
- * DAO para operaciones de Ganadero en Room
- */
 @Dao
 interface GanaderoDao {
     

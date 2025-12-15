@@ -2,12 +2,9 @@ package com.alpaca.knm.presentation.profile
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.alpaca.knm.domain.usecase.GetUserProfileUseCase
-import com.alpaca.knm.domain.usecase.LogoutUseCase
+import com.alpaca.knm.domain.usecase.auth.LogoutUseCase
+import com.alpaca.knm.domain.usecase.profile.GetUserProfileUseCase
 
-/**
- * Factory para crear instancias de ProfileViewModel
- */
 class ProfileViewModelFactory(
     private val getUserProfileUseCase: GetUserProfileUseCase,
     private val logoutUseCase: LogoutUseCase

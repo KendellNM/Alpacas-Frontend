@@ -5,13 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.alpaca.knm.domain.model.Ganadero
-import com.alpaca.knm.domain.usecase.CreateGanaderoUseCase
-import com.alpaca.knm.domain.usecase.UpdateGanaderoUseCase
+import com.alpaca.knm.domain.usecase.ganadero.CreateGanaderoUseCase
+import com.alpaca.knm.domain.usecase.ganadero.UpdateGanaderoUseCase
 import kotlinx.coroutines.launch
 
-/**
- * ViewModel para el formulario de Ganadero (Crear/Editar)
- */
 class GanaderoFormViewModel(
     private val createGanaderoUseCase: CreateGanaderoUseCase,
     private val updateGanaderoUseCase: UpdateGanaderoUseCase
@@ -30,7 +27,6 @@ class GanaderoFormViewModel(
     }
     
     fun onSaveClicked(ganadero: Ganadero) {
-        // Validar campos
         val validation = validateGanadero(ganadero)
         if (!validation.isValid) {
             _uiState.value = GanaderoFormUiState.ValidationError(validation.errors)

@@ -1,29 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="16dp"
-    android:layout_marginVertical="6dp"
+    android:layout_marginBottom="8dp"
     app:cardCornerRadius="12dp"
-    app:cardElevation="4dp"
-    app:strokeColor="@color/input_border"
-    app:strokeWidth="1dp">
+    app:cardElevation="2dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="12dp">
 
-        <!-- Header: ID y Status -->
+        <!-- Header: ID y Estado -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:paddingBottom="8dp">
+            android:gravity="center_vertical">
 
             <TextView
                 android:id="@+id/tvSolicitudId"
@@ -31,149 +26,107 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textColor="@color/text_secondary"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                tools:text="SOLICITUD #1" />
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/tvStatus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_status_pending"
-                android:paddingHorizontal="12dp"
-                android:paddingVertical="4dp"
-                android:textColor="@color/white"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="2dp"
                 android:textSize="10sp"
-                android:textStyle="bold"
-                tools:text="PENDIENTE" />
+                android:textStyle="bold" />
         </LinearLayout>
 
-        <View
+        <!-- Nombre Ganadero -->
+        <TextView
+            android:id="@+id/tvGanaderoName"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/input_border" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/text_primary"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
-        <!-- Content -->
+        <!-- Info: Kg y Fecha -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="4dp"
             android:orientation="horizontal">
 
-            <!-- Info Ganadero -->
-            <LinearLayout
+            <TextView
+                android:id="@+id/tvKilograms"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="vertical">
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp" />
 
-                <TextView
-                    android:id="@+id/tvGanaderoName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/text_primary"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    tools:text="Juan Pérez Huamán" />
-
-                <TextView
-                    android:id="@+id/tvKilograms"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:textColor="@color/text_secondary"
-                    android:textSize="12sp"
-                    tools:text="Scoring: 72 | 40.00 KG" />
-            </LinearLayout>
-
-            <!-- Monto y Recomendación -->
-            <LinearLayout
+            <TextView
+                android:id="@+id/tvDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="end">
-
-                <TextView
-                    android:id="@+id/tvAmount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/primary"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    tools:text="S/ 1,440.00" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:layout_marginTop="4dp">
-
-                    <ImageView
-                        android:layout_width="14dp"
-                        android:layout_height="14dp"
-                        android:src="@drawable/ic_star"
-                        app:tint="@color/success" />
-
-                    <TextView
-                        android:id="@+id/tvRecommendation"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
-                        android:textColor="@color/success"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        tools:text="Rec: APROBAR" />
-                </LinearLayout>
-            </LinearLayout>
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp" />
         </LinearLayout>
 
-        <!-- Action Buttons (visible solo para pendientes) -->
+        <!-- Monto y Recomendación -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tvAmount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/primary"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvRecommendation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Botones de Acción -->
         <LinearLayout
             android:id="@+id/layoutActions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="12dp"
             android:orientation="horizontal"
-            android:visibility="gone"
-            tools:visibility="visible">
+            android:gravity="end">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnReject"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:layout_width="0dp"
-                android:layout_height="44dp"
-                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
                 android:layout_marginEnd="8dp"
-                android:text="@string/solicitudes_reject"
+                android:text="Rechazar"
                 android:textAllCaps="false"
-                android:textColor="@color/danger"
+                android:textSize="12sp"
                 app:cornerRadius="8dp"
-                app:strokeColor="@color/danger"
-                app:icon="@drawable/ic_close"
-                app:iconTint="@color/danger" />
+                app:strokeColor="@color/danger" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnApprove"
-                android:layout_width="0dp"
-                android:layout_height="44dp"
-                android:layout_weight="1"
-                android:layout_marginStart="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
                 android:backgroundTint="@color/success"
-                android:text="@string/solicitudes_approve"
+                android:text="Aprobar"
                 android:textAllCaps="false"
-                app:cornerRadius="8dp"
-                app:icon="@drawable/ic_check"
-                app:iconTint="@color/white" />
+                android:textSize="12sp"
+                app:cornerRadius="8dp" />
         </LinearLayout>
 
-        <!-- Hidden date for compatibility -->
-        <TextView
-            android:id="@+id/tvDate"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:visibility="gone" />
-
     </LinearLayout>
-
 </com.google.android.material.card.MaterialCardView>

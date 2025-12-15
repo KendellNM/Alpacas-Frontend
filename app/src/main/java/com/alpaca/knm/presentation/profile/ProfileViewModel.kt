@@ -5,13 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.alpaca.knm.domain.model.UserProfile
-import com.alpaca.knm.domain.usecase.GetUserProfileUseCase
-import com.alpaca.knm.domain.usecase.LogoutUseCase
+import com.alpaca.knm.domain.usecase.auth.LogoutUseCase
+import com.alpaca.knm.domain.usecase.profile.GetUserProfileUseCase
 import kotlinx.coroutines.launch
 
-/**
- * ViewModel para la pantalla de perfil
- */
 class ProfileViewModel(
     private val getUserProfileUseCase: GetUserProfileUseCase,
     private val logoutUseCase: LogoutUseCase
@@ -68,18 +65,12 @@ class ProfileViewModel(
     }
 }
 
-/**
- * Estados de la UI de Profile
- */
 sealed class ProfileUiState {
     object Loading : ProfileUiState()
     data class Success(val profile: UserProfile) : ProfileUiState()
     data class Error(val message: String) : ProfileUiState()
 }
 
-/**
- * Eventos de navegación
- */
 sealed class ProfileNavigationEvent {
     object NavigateToHome : ProfileNavigationEvent()
     object NavigateToWallet : ProfileNavigationEvent()

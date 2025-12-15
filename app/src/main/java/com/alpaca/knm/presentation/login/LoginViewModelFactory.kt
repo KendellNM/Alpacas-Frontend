@@ -2,12 +2,9 @@ package com.alpaca.knm.presentation.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.alpaca.knm.domain.usecase.LoginUseCase
-import com.alpaca.knm.domain.usecase.ValidateCredentialsUseCase
+import com.alpaca.knm.domain.usecase.auth.LoginUseCase
+import com.alpaca.knm.domain.usecase.auth.ValidateCredentialsUseCase
 
-/**
- * Factory para crear instancias de LoginViewModel
- */
 class LoginViewModelFactory(
     private val loginUseCase: LoginUseCase,
     private val validateCredentialsUseCase: ValidateCredentialsUseCase

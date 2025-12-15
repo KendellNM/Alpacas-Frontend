@@ -6,9 +6,6 @@ import com.alpaca.knm.data.remote.dto.RazaInfo
 import retrofit2.Response
 import retrofit2.http.*
 
-/**
- * API Service para registro simplificado de alpacas
- */
 interface AlpacaRegistroApiService {
     
     @GET("alpacas/razas")
@@ -16,6 +13,9 @@ interface AlpacaRegistroApiService {
     
     @GET("alpacas/registros")
     suspend fun getRegistros(): Response<List<AlpacaRegistroResponse>>
+    
+    @GET("alpacas/registros")
+    suspend fun getAllRegistros(): Response<List<AlpacaRegistroResponse>>
     
     @GET("alpacas/mis-registros")
     suspend fun getMisRegistros(

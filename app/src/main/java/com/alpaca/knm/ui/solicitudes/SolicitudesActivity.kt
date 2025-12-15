@@ -29,21 +29,22 @@ class SolicitudesActivity : AppCompatActivity() {
     
     private lateinit var viewModel: SolicitudesViewModel
     private lateinit var adapter: SolicitudesAdapter
-    
     private var toolbar: MaterialToolbar? = null
     private lateinit var chipGroupFilter: ChipGroup
     private lateinit var rvSolicitudes: RecyclerView
     private lateinit var progressBar: ProgressBar
     private lateinit var emptyState: View
-    
-    // New views
+    private var chipPending: Chip? = null
+    private var chipApproved: Chip? = null
+    private var chipDisbursed: Chip? = null
+    private var chipRejected: Chip? = null
     private var btnBack: ImageButton? = null
     private var tvTitle: TextView? = null
+    private var allSolicitudes: List<Solicitud> = emptyList()
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_solicitudes)
-        
         setupViewModel()
         setupViews()
         setupRecyclerView()
@@ -68,20 +69,20 @@ class SolicitudesActivity : AppCompatActivity() {
         rvSolicitudes = findViewById(R.id.rvSolicitudes)
         progressBar = findViewById(R.id.progressBar)
         emptyState = findViewById(R.id.emptyState)
-        
-        // New navigation
+        chipPending = findViewById(R.id.chipPending)
+        chipApproved = findViewById(R.id.chipApproved)
+        chipDisbursed = findViewById(R.id.chipDisbursed)
+        chipRejected = findViewById(R.id.chipRejected)
         btnBack = findViewById(R.id.btnBack)
         tvTitle = findViewById(R.id.tvTitle)
-        
-        // Setup navigation
         toolbar?.setNavigationOnClickListener { finish() }
         btnBack?.setOnClickListener { finish() }
     }
     
     private fun setupRecyclerView() {
         adapter = SolicitudesAdapter(
-            onApprove = { solicitud -> showApproveDialog(solicitud) },
-            onReject = { solicitud -> showRejectDialog(solicitud) }
+            onApprove = { showApproveDialog(it) },
+            onReject = { showRejectDialog(it) }
         )
         rvSolicitudes.adapter = adapter
     }
@@ -90,21 +91,37 @@ class SolicitudesActivity : AppCompatActivity() {
         viewModel.uiState.observe(this) { state ->
             when (state) {
                 is SolicitudesUiState.Loading -> showLoading()
-                is SolicitudesUiState.Empty -> showEmpty()
-                is SolicitudesUiState.Success -> showSolicitudes(state.solicitudes)
-                is SolicitudesUiState.Error -> showError(state.message)
+                is SolicitudesUiState.Empty -> {
+                    allSolicitudes = emptyList()
+                    updateChipCounts()
+                    filterSolicitudes(SolicitudStatus.PENDIENTE)
+                }
+                is SolicitudesUiState.Success -> {
+                    allSolicitudes = state.solicitudes
+                    updateChipCounts()
+                    val currentChipId = chipGroupFilter.checkedChipId
+                    when (currentChipId) {
+                        R.id.chipPending -> filterSolicitudes(SolicitudStatus.PENDIENTE)
+                        R.id.chipApproved -> filterSolicitudes(SolicitudStatus.APROBADA)
+                        R.id.chipRejected -> filterSolicitudes(SolicitudStatus.RECHAZADA)
+                        R.id.chipDisbursed -> filterSolicitudes(SolicitudStatus.DESEMBOLSADA)
+                        else -> filterSolicitudes(SolicitudStatus.PENDIENTE)
+                    }
+                }
+                is SolicitudesUiState.Error -> {
+                    progressBar.visibility = View.GONE
+                    Toast.makeText(this, state.message, Toast.LENGTH_LONG).show()
+                }
             }
         }
-        
         viewModel.actionResult.observe(this) { result ->
             result?.let {
                 when (it) {
                     is ActionResult.Success -> {
                         Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
+                        viewModel.loadSolicitudes(null)
                     }
-                    is ActionResult.Error -> {
-                        Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
-                    }
+                    is ActionResult.Error -> Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
                 }
                 viewModel.clearActionResult()
             }
@@ -112,18 +129,29 @@ class SolicitudesActivity : AppCompatActivity() {
     }
     
     private fun setupFilters() {
-        // Load pending by default
-        viewModel.loadSolicitudes(SolicitudStatus.PENDIENTE)
-        
+        viewModel.loadSolicitudes(null)
+        chipPending?.isChecked = true
         chipGroupFilter.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
-                R.id.chipAll -> viewModel.loadSolicitudes(null)
-                R.id.chipPending -> viewModel.loadSolicitudes(SolicitudStatus.PENDIENTE)
-                R.id.chipApproved -> viewModel.loadSolicitudes(SolicitudStatus.APROBADA)
-                R.id.chipRejected -> viewModel.loadSolicitudes(SolicitudStatus.RECHAZADA)
-                R.id.chipDisbursed -> viewModel.loadSolicitudes(SolicitudStatus.DESEMBOLSADA)
+                R.id.chipAll -> filterSolicitudes(null)
+                R.id.chipPending -> filterSolicitudes(SolicitudStatus.PENDIENTE)
+                R.id.chipApproved -> filterSolicitudes(SolicitudStatus.APROBADA)
+                R.id.chipRejected -> filterSolicitudes(SolicitudStatus.RECHAZADA)
+                R.id.chipDisbursed -> filterSolicitudes(SolicitudStatus.DESEMBOLSADA)
             }
         }
+    }
+    
+    private fun filterSolicitudes(status: SolicitudStatus?) {
+        val filtered = if (status == null) allSolicitudes else allSolicitudes.filter { it.status == status }
+        if (filtered.isEmpty()) showEmpty() else showSolicitudes(filtered)
+    }
+    
+    private fun updateChipCounts() {
+        chipPending?.text = "Pendiente (${allSolicitudes.count { it.status == SolicitudStatus.PENDIENTE }})"
+        chipApproved?.text = "Aprobada (${allSolicitudes.count { it.status == SolicitudStatus.APROBADA }})"
+        chipDisbursed?.text = "Desembolsada (${allSolicitudes.count { it.status == SolicitudStatus.DESEMBOLSADA }})"
+        chipRejected?.text = "Rechazada (${allSolicitudes.count { it.status == SolicitudStatus.RECHAZADA }})"
     }
     
     private fun showLoading() {
@@ -145,18 +173,11 @@ class SolicitudesActivity : AppCompatActivity() {
         adapter.submitList(solicitudes)
     }
     
-    private fun showError(message: String) {
-        progressBar.visibility = View.GONE
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
-    }
-    
     private fun showApproveDialog(solicitud: Solicitud) {
         AlertDialog.Builder(this)
             .setTitle("Aprobar Solicitud")
             .setMessage("¿Aprobar la solicitud de ${solicitud.ganaderoNombre} por S/ ${String.format("%.2f", solicitud.totalAmount)}?")
-            .setPositiveButton("Aprobar") { _, _ ->
-                viewModel.approveSolicitud(solicitud.id)
-            }
+            .setPositiveButton("Aprobar") { _, _ -> viewModel.approveSolicitud(solicitud.id) }
             .setNegativeButton("Cancelar", null)
             .show()
     }
@@ -165,7 +186,6 @@ class SolicitudesActivity : AppCompatActivity() {
         val dialogView = layoutInflater.inflate(R.layout.dialog_reject_reason, null)
         val inputLayout = dialogView.findViewById<TextInputLayout>(R.id.tilRejectReason)
         val inputText = dialogView.findViewById<TextInputEditText>(R.id.etRejectReason)
-        
         AlertDialog.Builder(this)
             .setTitle("Rechazar Solicitud")
             .setMessage("Las observaciones son obligatorias para RECHAZAR una solicitud.")
@@ -176,7 +196,7 @@ class SolicitudesActivity : AppCompatActivity() {
                     viewModel.rejectSolicitud(solicitud.id, reason)
                 } else {
                     inputLayout.error = "El motivo es obligatorio"
-                    Toast.makeText(this, "Las observaciones son obligatorias para RECHAZAR una solicitud.", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "Las observaciones son obligatorias.", Toast.LENGTH_LONG).show()
                 }
             }
             .setNegativeButton("Cancelar", null)

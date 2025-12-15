@@ -7,9 +7,6 @@ import retrofit2.http.Body
 import retrofit2.http.Header
 import retrofit2.http.POST
 
-/**
- * API Service para solicitudes de anticipo
- */
 interface AdvanceApiService {
     
     @POST("advances/request")
